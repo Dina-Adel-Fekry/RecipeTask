@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l6n-tA-k1L">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hpm-2a-zQc">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -76,29 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MNB-vx-oLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="624.63768115942037" y="-135.26785714285714"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="11H-cm-U6U">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l6n-tA-k1L" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d0S-Lb-j0h">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.50967406380000002" green="0.15135334489999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bdn-if-x9l" kind="relationship" relationship="rootViewController" id="mb4-nG-vyf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OD9-Ll-A2f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-81" y="-135"/>
+            <point key="canvasLocation" x="1497.1014492753625" y="-111.16071428571428"/>
         </scene>
         <!--Filter View Controller-->
         <scene sceneID="BMc-i0-PR7">
@@ -112,20 +90,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="374" height="91"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uUu-6E-rAq">
-                                    <size key="itemSize" width="122" height="65"/>
+                                    <size key="itemSize" width="120" height="60"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="YSQ-d4-SuH" customClass="FilterCollectionViewCell" customModule="RecipeTask" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="13" width="122" height="65"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCollectionViewCell" id="YSQ-d4-SuH" customClass="FilterCollectionViewCell" customModule="RecipeTask" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="15.5" width="120" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="EUt-zm-syl">
-                                            <rect key="frame" x="0.0" y="0.0" width="122" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="122" height="65"/>
+                                        <color key="backgroundColor" red="0.75367775690000005" green="0.74752825540000001" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <size key="customSize" width="120" height="60"/>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -149,7 +128,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apv-xB-mVY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381" y="-292"/>
+            <point key="canvasLocation" x="2260.8695652173915" y="-232.03125"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CFa-ZQ-HKj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hpm-2a-zQc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VKq-gp-fcv">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bdn-if-x9l" kind="relationship" relationship="rootViewController" id="Q2K-Y1-brX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uxz-xo-Dg7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="586.95652173913049" y="-111.16071428571428"/>
         </scene>
     </scenes>
 </document>

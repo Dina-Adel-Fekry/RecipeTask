@@ -7,27 +7,35 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchViewController: UIViewController{
    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var recipesTableView: UITableView!
     var recipeArray = [Recipe]()
+    var response = [[String:Any]]()
     
     enum Segues{
         static let toFilterView = "toFilterCollectionView"
     }
-    var presenter : SearchOutput?  
+    var presenter : SearchOutput?
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetch()
         initPresenter()
         presenter?.viewDidLoad()
+        
+        
+        
         
         
         
 
         // Do any additional setup after loading the view.
     }
+    
+    
     
     
     // MARK: - private methods
@@ -68,9 +76,22 @@ class SearchViewController: UIViewController{
         let health : String
     }
     
-
+    func fetch(){
+        Alamofire.request("https://api.edamam.com/api/recipes/v2?q=chicken&app_id=8b456bdf&app_key=473b2f968e4aa88550ee5b5a07e6cfac&type=public").responseJSON { (response) in
+//print("Response value \(response)")
+             //print("Response.result.value \(response.result.value!)")
+             
+                if let json = response.result.value as! [String:Any]?{
+                if let responseValue = json["hits"] as! [[String:Any]]?{
+                    self.response = responseValue
+                  
+                }
+           
+    }
+    
+    }
 }
-
+}
 extension SearchViewController: SearchInput{
     func showRecipes() {
         
@@ -121,4 +142,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
        func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
           
       }
+   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return 160
+    }
 }
