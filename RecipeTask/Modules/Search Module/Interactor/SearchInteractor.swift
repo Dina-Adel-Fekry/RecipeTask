@@ -9,17 +9,13 @@
 import Foundation
 class SearchInteractor {
 
-  
-   
-   // MARK: - Methods
-   func fetchRecipes() {
-
-     // if fetched   ---->  self.presenter?.recipesFetched()
+    var network: NetworkManager?
     
-
-    // if not fetched   ---->  self.presenter?.recipesFetchedFailed)
-
-                  
-   }
+    
+   
+    
+    
+   
+   
 }
 

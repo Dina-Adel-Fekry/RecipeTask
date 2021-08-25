@@ -20,12 +20,13 @@ class SearchViewController: UIViewController{
         static let toFilterView = "toFilterCollectionView"
     }
     var presenter : SearchOutput?
+    var net = NetworkManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetch()
+        
         initPresenter()
         presenter?.viewDidLoad()
-        
+        net.fetchData()
         
         
         
@@ -76,22 +77,19 @@ class SearchViewController: UIViewController{
         let health : String
     }
     
-    func fetch(){
-        Alamofire.request("https://api.edamam.com/api/recipes/v2?q=chicken&app_id=8b456bdf&app_key=473b2f968e4aa88550ee5b5a07e6cfac&type=public").responseJSON { (response) in
-//print("Response value \(response)")
-             //print("Response.result.value \(response.result.value!)")
-             
-                if let json = response.result.value as! [String:Any]?{
-                if let responseValue = json["hits"] as! [[String:Any]]?{
-                    self.response = responseValue
-                  
-                }
+    
            
-    }
     
     }
-}
-}
+
+
+
+
+
+
+
+
+
 extension SearchViewController: SearchInput{
     func showRecipes() {
         
@@ -146,4 +144,19 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 
         return 160
     }
+}
+
+extension SearchViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText \(searchText)")
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchText \(String(describing: searchBar.text))")
+    }
+       /*    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+       
+    }
+ */
+    
 }
