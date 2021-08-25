@@ -24,7 +24,12 @@ class SearchPresenter {
         self.router = router
     }
     
- 
+    // MARK: -Private Methods
+    private func fetchRecipeData(){
+        interactor?.fetchRecipeData(completionHandler: { (value) in
+            print((value as? SearchApiModel)?._links.next.href)
+        })
+    }
     
 
 
@@ -32,7 +37,7 @@ class SearchPresenter {
 
 extension SearchPresenter : SearchOutput{
     func didTapSearchBar() {
-           
+           fetchRecipeData()
        }
        
        func viewDidLoad() {

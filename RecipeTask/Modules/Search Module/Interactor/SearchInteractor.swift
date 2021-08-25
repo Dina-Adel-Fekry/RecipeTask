@@ -8,14 +8,15 @@
 
 import Foundation
 class SearchInteractor {
+    
 
-    var network: NetworkManager?
+    var network = NetworkManager()
+    func fetchRecipeData(completionHandler: @escaping (Any)-> Void){
+        
+        network.fetchData(completionHandler: completionHandler)
+    }
     
-    
-   
-    
-    
-   
    
 }
+
 

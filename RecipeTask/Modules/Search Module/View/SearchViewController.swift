@@ -15,18 +15,18 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var recipesTableView: UITableView!
     var recipeArray = [Recipe]()
     var response = [[String:Any]]()
+    var searchBarInput: String?
     
     enum Segues{
         static let toFilterView = "toFilterCollectionView"
     }
     var presenter : SearchOutput?
-    var net = NetworkManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         initPresenter()
         presenter?.viewDidLoad()
-        net.fetchData()
+       
         
         
         
@@ -153,10 +153,24 @@ extension SearchViewController: UISearchBarDelegate{
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("searchText \(String(describing: searchBar.text))")
+        searchBarInput = searchBar.text
+        
+        
     }
-       /*    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
        
+         do {
+            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
+            if regex.firstMatch(in: text, options: [], range: NSMakeRange(0, text.count)) != nil {
+                 return false
+
+            }
+        }
+        catch {
+            print("Error in Using Search Bar")
+        }
+        return true
     }
- */
+ 
     
 }
