@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RecipeTableViewCell: UITableViewCell {
     
@@ -19,10 +20,12 @@ class RecipeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recipeHelthLabels: UILabel!
     
-    func setupCell(title : String ,source : String, health : String){
+    func setupCell(title : String? ,image:String?,source : String?, health : [String]?){
         recipeTitle.text = title
         recipeSource.text = source
-        recipeHelthLabels.text = health
+        recipeImage.image = UIImage(named: (image)!)
+        recipeHelthLabels.text = health?.joined(separator: ",")
+            
     }
     override func awakeFromNib() {
         super.awakeFromNib()

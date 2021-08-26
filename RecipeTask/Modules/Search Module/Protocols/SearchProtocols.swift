@@ -10,17 +10,18 @@ import Foundation
 import UIKit
 
 protocol SearchInput: class {
-    func showRecipes()
+    func reloadData()
     func showError()
     func updateView()
     func showSuggestions()
-    func initRecipeArray()
+    func initRecipeArray(recipesArray:[RecipeModel])
     func setup()
 }
 
 
 protocol SearchOutput: class {
-    func didTapSearchBar()
+   // func didTapSearchBar()
+    func didTapSearchBar(searchBarInput: String)
     func viewDidLoad()
     
 }

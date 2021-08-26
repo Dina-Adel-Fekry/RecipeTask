@@ -13,9 +13,10 @@ class SearchViewController: UIViewController{
    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var recipesTableView: UITableView!
-    var recipeArray = [Recipe]()
+    @IBOutlet weak var noSearchLabel: UILabel!
+    var recipeArray  = [RecipeModel]()
     var response = [[String:Any]]()
-    var searchBarInput: String?
+   
     
     enum Segues{
         static let toFilterView = "toFilterCollectionView"
@@ -23,16 +24,11 @@ class SearchViewController: UIViewController{
     var presenter : SearchOutput?
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         initPresenter()
         presenter?.viewDidLoad()
+        noSearchLabel.isHidden = false
+        recipesTableView.isHidden = true
        
-        
-        
-        
-        
-        
-
         // Do any additional setup after loading the view.
     }
     
@@ -46,9 +42,6 @@ class SearchViewController: UIViewController{
     
     
     private func registerCells(){
-        
-      // self.recipesTableView.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeCell")
-        
         self.recipesTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")    }
     
 
@@ -71,11 +64,7 @@ class SearchViewController: UIViewController{
        }
     
     
-    struct Recipe{
-        let title : String
-        let source : String
-        let health : String
-    }
+   
     
     
            
@@ -85,21 +74,21 @@ class SearchViewController: UIViewController{
 
 
 
-
-
-
-
-
 extension SearchViewController: SearchInput{
-    func showRecipes() {
-        
+ 
+    func reloadData() {
+        recipesTableView.reloadData()
     }
     
     func showError() {
         
+        recipesTableView.isHidden = true
+        noSearchLabel.isHidden = false
     }
     
     func updateView() {
+        noSearchLabel.isHidden = true
+        recipesTableView.isHidden = false
         
     }
     
@@ -107,12 +96,10 @@ extension SearchViewController: SearchInput{
         
     }
     
-    func initRecipeArray(){
-        recipeArray.append(Recipe(title: "Title" , source: "Source", health: "Health Labels"))
-        recipeArray.append(Recipe(title: "Title" , source: "Source", health: "Health Labels"))
-        recipeArray.append(Recipe(title: "Title" , source: "Source", health: "Health Labels"))
-        recipeArray.append(Recipe(title: "Title" , source: "Source", health: "Health Labels"))
-        recipeArray.append(Recipe(title: "Title" , source: "Source", health: "Health Labels"))
+    func initRecipeArray(recipesArray:[RecipeModel]){
+
+        recipeArray = recipesArray
+        
     }
     
     func setup(){
@@ -133,7 +120,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           var cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell",for: indexPath) as! RecipeTableViewCell
           let recipe = recipeArray[indexPath.row]
-          cell.setupCell(title: recipe.title, source: recipe.source, health: recipe.health)
+        cell.setupCell(title: recipe.title, image: recipe.image, source: recipe.source, health: recipe.healthLabels)
+        cell.recipeImage.sd_setImage(with: URL(string: recipe.image!))
+
           return cell
       }
       
@@ -146,31 +135,41 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+
+
 extension SearchViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("searchText \(searchText)")
+        
+       // presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
+        
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searchText \(String(describing: searchBar.text))")
-        searchBarInput = searchBar.text
-        
-        
+       print("searchText \(searchBar.text)")
+
+      //  print("searchText \(String(describing: searchBar.text))")
+        presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
     }
+    
+
+
+    
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-       
+
+        return true
          do {
             let regex = try NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
-            if regex.firstMatch(in: text, options: [], range: NSMakeRange(0, text.count)) != nil {
+           if regex.firstMatch(in: text, options: [], range: NSMakeRange(0, text.count)) != nil {
                  return false
 
             }
         }
-        catch {
-            print("Error in Using Search Bar")
+       catch {
+           print("Error in Using Search Bar")
         }
-        return true
-    }
- 
+       return true
+   }
+
     
 }

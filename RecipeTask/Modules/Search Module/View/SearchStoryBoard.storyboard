@@ -55,6 +55,13 @@
                                     <segue destination="D8e-Qe-BYi" kind="embed" identifier="toFilterCollectionView" id="0sq-W4-R9V"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Search Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zx-cd-7fU">
+                                <rect key="frame" x="12" y="256" width="390" height="620"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -73,6 +80,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Recipes Search" id="5DR-0y-pty"/>
                     <connections>
+                        <outlet property="noSearchLabel" destination="9Zx-cd-7fU" id="bof-4T-5qv"/>
                         <outlet property="recipesTableView" destination="Qx3-iu-ydp" id="ARs-kj-Uqo"/>
                         <outlet property="searchBar" destination="2u6-Yb-1PN" id="O2F-Om-qSD"/>
                     </connections>
