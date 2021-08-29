@@ -13,12 +13,14 @@ class FilterViewController: UIViewController{
     @IBOutlet weak var filterCollectionView: UICollectionView!
     let reuseIdentifier = "FilterCollectionViewCell"
      var presenter : FilterOutput?
+    
      var items = [String]()
     override func viewDidLoad() {
           super.viewDidLoad()
           initPresenter()
           presenter?.viewDidLoad()
-        
+          
+         
         
           
 
@@ -48,8 +50,10 @@ class FilterViewController: UIViewController{
     */
 }
 extension FilterViewController: FilterInput{
-    func updateView(){
-        
+    func updateView(filterType: String){
+        if let parent = self.parent as? SearchViewController {
+            parent.setCurrentFilter(filter: filterType)
+        }
     }
     func initFilterArray(){
         items.append("All")
@@ -78,7 +82,8 @@ extension FilterViewController: UICollectionViewDataSource,UICollectionViewDeleg
      
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-         print("You selected cell #\(indexPath.item)!")
+         print("You selected cell #\(indexPath.item)")
+         presenter?.didTapFilterHealth(cellNumber: indexPath.item)
      }
     
      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize

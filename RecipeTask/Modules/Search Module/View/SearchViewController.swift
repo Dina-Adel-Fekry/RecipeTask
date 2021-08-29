@@ -16,7 +16,18 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var noSearchLabel: UILabel!
     var recipeArray  = [RecipeModel]()
     var response = [[String:Any]]()
-   
+    private var  currentFilter : String?{
+        didSet{
+            //filter,search
+            //Network
+            if (currentFilter == "all"){
+                presenter?.didTapSearchBar(searchBarInput: searchBar?.text ?? "meat")
+            }
+            else{
+                presenter?.didTapFilterCell(searchBarInput: searchBar?.text ?? "meat", filterType: currentFilter ?? "low-sugar")
+            }
+        }
+    }
     
     enum Segues{
         static let toFilterView = "toFilterCollectionView"
@@ -55,11 +66,17 @@ class SearchViewController: UIViewController{
     }
     */
   
+    // MARK: - public methods
+    
+    func setCurrentFilter(filter: String){
+        currentFilter = filter
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            if segue.identifier == Segues.toFilterView{
                let destVC = segue.destination as! FilterViewController
+            
            }
        }
     
@@ -125,10 +142,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 
           return cell
       }
-      
-       func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-          
-      }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+         let detailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        self.present(detailsViewController, animated: true, completion: nil)
+         //self.navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+
    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         return 160
@@ -142,6 +163,7 @@ extension SearchViewController: UISearchBarDelegate{
         print("searchText \(searchText)")
         
        // presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
+       // filterPresenter?.didTapFilterHealth(cellNumber:0,searchBarInput: searchBar.text ?? "meat")
         
     }
 

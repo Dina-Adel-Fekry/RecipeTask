@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 protocol FilterInput: class {
-    func updateView()
+    func updateView(filterType: String)
     func initFilterArray()
     func setup()
 }
 
 
 protocol FilterOutput: class {
-    func didTapFilterHealth()
+    func didTapFilterHealth(cellNumber: Int)
     func viewDidLoad()
     
 }

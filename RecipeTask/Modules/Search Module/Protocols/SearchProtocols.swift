@@ -22,6 +22,7 @@ protocol SearchInput: class {
 protocol SearchOutput: class {
    // func didTapSearchBar()
     func didTapSearchBar(searchBarInput: String)
+    func didTapFilterCell(searchBarInput: String, filterType: String)
     func viewDidLoad()
     
 }
