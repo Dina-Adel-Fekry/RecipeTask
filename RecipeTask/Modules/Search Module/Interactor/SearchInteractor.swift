@@ -15,8 +15,10 @@ class SearchInteractor {
         
         network.fetchData(body:body,completionHandler: completionHandler)
     }
-    
-   
+    func fetchMoreRecipeData(request: String,completionHandler: @escaping (Any?)-> Void){
+        
+        network.fetchMoreData(request:request,completionHandler: completionHandler)
+    }
 }
 
 

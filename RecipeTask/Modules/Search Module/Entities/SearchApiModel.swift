@@ -9,6 +9,9 @@
 import Foundation
 
 struct SearchApiModel: Decodable {
+    var from: Int
+    var to: Int
+    var count: Int
     var _links: LinksData
     var hits: [HitsData]    
 }

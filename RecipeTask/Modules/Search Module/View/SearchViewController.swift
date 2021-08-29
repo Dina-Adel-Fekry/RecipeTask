@@ -15,6 +15,9 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var recipesTableView: UITableView!
     @IBOutlet weak var noSearchLabel: UILabel!
     var recipeArray  = [RecipeModel]()
+    var fromIndex : Int?
+    var countNumber : Int?
+    var nextUrl : String?
     var response = [[String:Any]]()
     private var  currentFilter : String?{
         didSet{
@@ -113,9 +116,15 @@ extension SearchViewController: SearchInput{
         
     }
     
-    func initRecipeArray(recipesArray:[RecipeModel]){
-
+    func initRecipeArray(recipesArray:[RecipeModel],from:Int, count: Int,nextUrl: String){
+        self.countNumber = count
+        if (from == 1){
         recipeArray = recipesArray
+        }
+        else{
+            recipeArray = recipeArray+recipesArray
+        }
+        self.nextUrl = nextUrl
         
     }
     
@@ -139,14 +148,20 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
           let recipe = recipeArray[indexPath.row]
         cell.setupCell(title: recipe.title, image: recipe.image, source: recipe.source, health: recipe.healthLabels)
         cell.recipeImage.sd_setImage(with: URL(string: recipe.image!))
+        if indexPath.row == recipeArray.count - 1 { // last cell
+            if countNumber ?? 20 > recipeArray.count { // more items to fetch
+                presenter?.didNeedMoreData(request:nextUrl ?? "")
+                
+            }
+        }
 
           return cell
       }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-         let detailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-        self.present(detailsViewController, animated: true, completion: nil)
+//         let detailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+//        self.present(detailsViewController, animated: true, completion: nil)
          //self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
 

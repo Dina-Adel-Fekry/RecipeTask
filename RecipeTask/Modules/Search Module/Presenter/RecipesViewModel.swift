@@ -10,8 +10,14 @@ import Foundation
 class RecipesViewModel{
     var recipes = [RecipeModel]()
     var nextPageUrl: String?
+    var from: Int?
+    var to: Int?
+    var count: Int?
     init( searchApiModel: SearchApiModel){
         self.nextPageUrl = searchApiModel._links.next.href
+        self.from = searchApiModel.from
+        self.to = searchApiModel.to
+        self.count = searchApiModel.count
         for hit in searchApiModel.hits{
             let recipeModel = RecipeModel(hitsData: hit)
             recipes.append(recipeModel)

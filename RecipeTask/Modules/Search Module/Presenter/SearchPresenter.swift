@@ -35,7 +35,7 @@ class SearchPresenter {
             
             if let response = value as? SearchApiModel {
                 let recipesViewModel = RecipesViewModel(searchApiModel: response)
-                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes)
+                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes, from: recipesViewModel.from ?? 1, count: recipesViewModel.count ?? 20,nextUrl: recipesViewModel.nextPageUrl ?? "")
                 if(recipesViewModel.recipes.isEmpty){
                     self.view?.showError()
                 }
@@ -64,7 +64,7 @@ class SearchPresenter {
             
             if let response = value as? SearchApiModel {
                 let recipesViewModel = RecipesViewModel(searchApiModel: response)
-                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes)
+                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes, from: recipesViewModel.from ?? 1, count: recipesViewModel.count ?? 20,nextUrl: recipesViewModel.nextPageUrl ?? "")
                 if(recipesViewModel.recipes.isEmpty){
                     self.view?.showError()
                 }
@@ -79,6 +79,36 @@ class SearchPresenter {
                 self.view?.showError()
                 self.view?.reloadData()
             }
+            
+            
+            
+
+        })
+    }
+    
+    private func fetchMoreData(request: String){
+        interactor?.fetchMoreRecipeData(request:request,completionHandler: { (value) in
+        //    print((value as? SearchApiModel)?.hits)
+            
+            if let response = value as? SearchApiModel {
+                let recipesViewModel = RecipesViewModel(searchApiModel: response)
+                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes, from: recipesViewModel.from ?? 1, count: recipesViewModel.count ?? 20,nextUrl: recipesViewModel.nextPageUrl ?? "")
+                if(recipesViewModel.recipes.isEmpty){
+                    self.view?.showError()
+                }
+                else{
+                self.view?.updateView()
+                
+                
+                }
+                self.view?.reloadData()
+            }
+            else{
+                self.view?.showError()
+                self.view?.reloadData()
+            }
+            
+            
             
 
         })
@@ -104,6 +134,9 @@ extension SearchPresenter : SearchOutput{
         fetchFilteredData(searchBarInput: searchBarInput, filterType: filterType)
     }
 
+    func didNeedMoreData(request:String){
+        fetchMoreData(request:request)
+    }
 }
 
 
