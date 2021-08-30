@@ -14,6 +14,8 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var recipesTableView: UITableView!
     @IBOutlet weak var noSearchLabel: UILabel!
+    @IBOutlet weak var suggestionsView: UIView!
+    
     var recipeArray  = [RecipeModel]()
     var fromIndex : Int?
     var countNumber : Int?
@@ -34,6 +36,7 @@ class SearchViewController: UIViewController{
     
     enum Segues{
         static let toFilterView = "toFilterCollectionView"
+        static let toSuggestionsView = "toSuggestionsView"
     }
     var presenter : SearchOutput?
     override func viewDidLoad() {
@@ -42,6 +45,7 @@ class SearchViewController: UIViewController{
         presenter?.viewDidLoad()
         noSearchLabel.isHidden = false
         recipesTableView.isHidden = true
+        suggestionsView.isHidden = true
        
         // Do any additional setup after loading the view.
     }
@@ -81,7 +85,10 @@ class SearchViewController: UIViewController{
                let destVC = segue.destination as! FilterViewController
             
            }
-       }
+          if segue.identifier == Segues.toSuggestionsView{
+                      let destVC = segue.destination as! SuggestionsViewController
+                   
+                  }       }
     
     
    
@@ -112,7 +119,10 @@ extension SearchViewController: SearchInput{
         
     }
     
-    func showSuggestions() {
+    func setSuggestions(suggestion: String) {
+        if let child = self.children[1] as? SuggestionsViewController {
+            child.setSuggestionItem(suggestion: suggestion)
+        }
         
     }
     
@@ -176,16 +186,23 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 extension SearchViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("searchText \(searchText)")
+        suggestionsView.isHidden = false
         
-       // presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
-       // filterPresenter?.didTapFilterHealth(cellNumber:0,searchBarInput: searchBar.text ?? "meat")
+       
         
     }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        suggestionsView.isHidden = false
+        
+    }
+    
+    
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
        print("searchText \(searchBar.text)")
 
       //  print("searchText \(String(describing: searchBar.text))")
+        suggestionsView.isHidden = true
         presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
     }
     
@@ -194,9 +211,8 @@ extension SearchViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 
-        return true
          do {
-            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
+            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z \n].*", options: [])
            if regex.firstMatch(in: text, options: [], range: NSMakeRange(0, text.count)) != nil {
                  return false
 

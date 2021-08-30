@@ -122,11 +122,11 @@ class SearchPresenter {
 extension SearchPresenter : SearchOutput{
     func didTapSearchBar(searchBarInput: String) {
         fetchRecipeData(searchBarInput: searchBarInput)
+        view?.setSuggestions(suggestion: searchBarInput)
     }
 
        
        func viewDidLoad() {
-       // view?.initRecipeArray(recipesArray: <#[RecipeModel]#>)
         view?.setup()
        }
     

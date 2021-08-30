@@ -13,9 +13,10 @@ protocol SearchInput: class {
     func reloadData()
     func showError()
     func updateView()
-    func showSuggestions()
+    func setSuggestions(suggestion: String)
     func initRecipeArray(recipesArray:[RecipeModel],from: Int, count: Int,nextUrl: String)
     func setup()
+    
 }
 
 
