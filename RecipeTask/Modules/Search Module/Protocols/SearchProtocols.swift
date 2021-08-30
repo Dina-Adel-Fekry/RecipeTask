@@ -13,15 +13,18 @@ protocol SearchInput: class {
     func reloadData()
     func showError()
     func updateView()
-    func showSuggestions()
-    func initRecipeArray(recipesArray:[RecipeModel])
+    func setSuggestions(suggestion: String)
+    func initRecipeArray(recipesArray:[RecipeModel],from: Int, count: Int,nextUrl: String)
     func setup()
+    
 }
 
 
 protocol SearchOutput: class {
    // func didTapSearchBar()
     func didTapSearchBar(searchBarInput: String)
+    func didTapFilterCell(searchBarInput: String, filterType: String)
     func viewDidLoad()
+     func didNeedMoreData(request:String)
     
 }

@@ -62,16 +62,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIR-aP-eFn">
+                                <rect key="frame" x="20" y="152" width="382" height="163"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="163" id="2ic-8M-jJk"/>
+                                    <constraint firstAttribute="width" constant="382" id="8iR-hI-gas"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="tSW-Xn-fED" kind="embed" identifier="toSuggestionsView" id="jY4-qW-AvH"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="2u6-Yb-1PN" firstAttribute="leading" secondItem="7Pz-AF-VEE" secondAttribute="leading" constant="12" id="0Cb-Ym-ZUn"/>
+                            <constraint firstItem="ZIR-aP-eFn" firstAttribute="leading" secondItem="7Pz-AF-VEE" secondAttribute="leading" constant="20" id="0lm-N6-Xko"/>
                             <constraint firstItem="Qx3-iu-ydp" firstAttribute="leading" secondItem="7Pz-AF-VEE" secondAttribute="leading" constant="12" id="1UJ-mN-FtT"/>
                             <constraint firstItem="Qx3-iu-ydp" firstAttribute="top" secondItem="t3h-ds-6Uw" secondAttribute="bottom" constant="8" id="EXV-Gy-dg2"/>
                             <constraint firstItem="2u6-Yb-1PN" firstAttribute="top" secondItem="7Pz-AF-VEE" secondAttribute="top" constant="20" id="FBf-gx-FXZ"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Qx3-iu-ydp" secondAttribute="bottom" constant="-14" id="K14-uG-xss"/>
                             <constraint firstItem="7Pz-AF-VEE" firstAttribute="trailing" secondItem="Qx3-iu-ydp" secondAttribute="trailing" constant="12" id="KfP-Mc-ivF"/>
                             <constraint firstItem="7Pz-AF-VEE" firstAttribute="trailing" secondItem="2u6-Yb-1PN" secondAttribute="trailing" constant="12" id="N6n-nq-wcb"/>
+                            <constraint firstItem="ZIR-aP-eFn" firstAttribute="top" secondItem="2u6-Yb-1PN" secondAttribute="bottom" id="jN0-ZV-nut"/>
                             <constraint firstItem="t3h-ds-6Uw" firstAttribute="top" secondItem="2u6-Yb-1PN" secondAttribute="bottom" constant="5" id="jPX-e8-oUJ"/>
                             <constraint firstItem="t3h-ds-6Uw" firstAttribute="leading" secondItem="7Pz-AF-VEE" secondAttribute="leading" constant="20" id="toT-Yn-tzp"/>
                             <constraint firstItem="7Pz-AF-VEE" firstAttribute="trailing" secondItem="t3h-ds-6Uw" secondAttribute="trailing" constant="20" id="yc3-xa-T94"/>
@@ -83,6 +95,7 @@
                         <outlet property="noSearchLabel" destination="9Zx-cd-7fU" id="bof-4T-5qv"/>
                         <outlet property="recipesTableView" destination="Qx3-iu-ydp" id="ARs-kj-Uqo"/>
                         <outlet property="searchBar" destination="2u6-Yb-1PN" id="O2F-Om-qSD"/>
+                        <outlet property="suggestionsView" destination="ZIR-aP-eFn" id="9kZ-wj-VBw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MNB-vx-oLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -149,6 +162,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VKq-gp-fcv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.50967406380000002" green="0.15135334489999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -158,6 +175,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxz-xo-Dg7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="586.95652173913049" y="-111.16071428571428"/>
+        </scene>
+        <!--Suggestions View Controller-->
+        <scene sceneID="DR1-ra-jjd">
+            <objects>
+                <viewController id="tSW-Xn-fED" customClass="SuggestionsViewController" customModule="RecipeTask" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sZe-wD-Yna">
+                        <rect key="frame" x="0.0" y="0.0" width="382" height="163"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ARw-bQ-19X">
+                                <rect key="frame" x="0.0" y="0.0" width="382" height="163"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionCell" rowHeight="47" id="V0f-XY-nAf" customClass="SuggestionsTableViewCell" customModule="RecipeTask" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="382" height="47"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V0f-XY-nAf" id="nfy-kz-r8M">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="47"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="tSW-Xn-fED" id="zjm-v3-UoE"/>
+                                    <outlet property="delegate" destination="tSW-Xn-fED" id="5hb-to-tBo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ARw-bQ-19X" firstAttribute="trailing" secondItem="cRY-Ng-qbo" secondAttribute="trailing" id="ENw-Ba-vVS"/>
+                            <constraint firstItem="ARw-bQ-19X" firstAttribute="bottom" secondItem="cRY-Ng-qbo" secondAttribute="bottom" id="O2J-FI-cOE"/>
+                            <constraint firstItem="ARw-bQ-19X" firstAttribute="leading" secondItem="cRY-Ng-qbo" secondAttribute="leading" id="OOK-Ee-5hU"/>
+                            <constraint firstItem="ARw-bQ-19X" firstAttribute="top" secondItem="sZe-wD-Yna" secondAttribute="top" id="wUV-9E-txT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cRY-Ng-qbo"/>
+                    </view>
+                    <connections>
+                        <outlet property="suggestionTableView" destination="ARw-bQ-19X" id="bhj-Es-000"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CxO-Z3-NkL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2266.666666666667" y="-58.59375"/>
         </scene>
     </scenes>
 </document>

@@ -28,14 +28,14 @@ class SearchPresenter {
     
     // MARK: -Private Methods
     private func fetchRecipeData(searchBarInput: String){
-        
-        interactor?.fetchRecipeData(completionHandler: { (value) in
+        var body = [String: String?]()
+        body["q"] = searchBarInput
+        interactor?.fetchRecipeData(body:body,completionHandler: { (value) in
         //    print((value as? SearchApiModel)?.hits)
             
             if let response = value as? SearchApiModel {
                 let recipesViewModel = RecipesViewModel(searchApiModel: response)
-          
-                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes)
+                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes, from: recipesViewModel.from ?? 1, count: recipesViewModel.count ?? 20,nextUrl: recipesViewModel.nextPageUrl ?? "")
                 if(recipesViewModel.recipes.isEmpty){
                     self.view?.showError()
                 }
@@ -52,15 +52,69 @@ class SearchPresenter {
             }
             
 
-        }, searchBarInput: searchBarInput)
+        })
     }
     
-    struct Recipe {
-        let title: String?
-        let image: String?
-        let source: String?
-        let healthLabels: [String]?
+    private func fetchFilteredData(searchBarInput: String,filterType: String){
+        var body = [String: String?]()
+        body["q"] = searchBarInput
+        body["health"] = filterType
+        interactor?.fetchRecipeData(body:body,completionHandler: { (value) in
+        //    print((value as? SearchApiModel)?.hits)
+            
+            if let response = value as? SearchApiModel {
+                let recipesViewModel = RecipesViewModel(searchApiModel: response)
+                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes, from: recipesViewModel.from ?? 1, count: recipesViewModel.count ?? 20,nextUrl: recipesViewModel.nextPageUrl ?? "")
+                if(recipesViewModel.recipes.isEmpty){
+                    self.view?.showError()
+                }
+                else{
+                self.view?.updateView()
+                
+                
+                }
+                self.view?.reloadData()
+            }
+            else{
+                self.view?.showError()
+                self.view?.reloadData()
+            }
+            
+            
+            
+
+        })
     }
+    
+    private func fetchMoreData(request: String){
+        interactor?.fetchMoreRecipeData(request:request,completionHandler: { (value) in
+        //    print((value as? SearchApiModel)?.hits)
+            
+            if let response = value as? SearchApiModel {
+                let recipesViewModel = RecipesViewModel(searchApiModel: response)
+                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes, from: recipesViewModel.from ?? 1, count: recipesViewModel.count ?? 20,nextUrl: recipesViewModel.nextPageUrl ?? "")
+                if(recipesViewModel.recipes.isEmpty){
+                    self.view?.showError()
+                }
+                else{
+                self.view?.updateView()
+                
+                
+                }
+                self.view?.reloadData()
+            }
+            else{
+                self.view?.showError()
+                self.view?.reloadData()
+            }
+            
+            
+            
+
+        })
+    }
+    
+
 
 
 }
@@ -68,13 +122,21 @@ class SearchPresenter {
 extension SearchPresenter : SearchOutput{
     func didTapSearchBar(searchBarInput: String) {
         fetchRecipeData(searchBarInput: searchBarInput)
+        view?.setSuggestions(suggestion: searchBarInput)
     }
 
        
        func viewDidLoad() {
-       // view?.initRecipeArray(recipesArray: <#[RecipeModel]#>)
         view?.setup()
        }
+    
+    func didTapFilterCell(searchBarInput: String, filterType: String){
+        fetchFilteredData(searchBarInput: searchBarInput, filterType: filterType)
+    }
+
+    func didNeedMoreData(request:String){
+        fetchMoreData(request:request)
+    }
 }
 
 

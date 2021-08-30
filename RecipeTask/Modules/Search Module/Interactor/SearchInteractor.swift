@@ -11,12 +11,14 @@ class SearchInteractor {
     
 
     var network = NetworkManager()
-    func fetchRecipeData(completionHandler: @escaping (Any?)-> Void,searchBarInput: String){
+    func fetchRecipeData(body:[String: String?],completionHandler: @escaping (Any?)-> Void){
         
-        network.fetchData(completionHandler: completionHandler, searchBarInput: searchBarInput)
+        network.fetchData(body:body,completionHandler: completionHandler)
     }
-    
-   
+    func fetchMoreRecipeData(request: String,completionHandler: @escaping (Any?)-> Void){
+        
+        network.fetchMoreData(request:request,completionHandler: completionHandler)
+    }
 }
 
 

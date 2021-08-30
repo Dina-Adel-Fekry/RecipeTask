@@ -14,12 +14,29 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var recipesTableView: UITableView!
     @IBOutlet weak var noSearchLabel: UILabel!
+    @IBOutlet weak var suggestionsView: UIView!
+    
     var recipeArray  = [RecipeModel]()
+    var fromIndex : Int?
+    var countNumber : Int?
+    var nextUrl : String?
     var response = [[String:Any]]()
-   
+    private var  currentFilter : String?{
+        didSet{
+            //filter,search
+            //Network
+            if (currentFilter == "all"){
+                presenter?.didTapSearchBar(searchBarInput: searchBar?.text ?? "meat")
+            }
+            else{
+                presenter?.didTapFilterCell(searchBarInput: searchBar?.text ?? "meat", filterType: currentFilter ?? "low-sugar")
+            }
+        }
+    }
     
     enum Segues{
         static let toFilterView = "toFilterCollectionView"
+        static let toSuggestionsView = "toSuggestionsView"
     }
     var presenter : SearchOutput?
     override func viewDidLoad() {
@@ -28,6 +45,7 @@ class SearchViewController: UIViewController{
         presenter?.viewDidLoad()
         noSearchLabel.isHidden = false
         recipesTableView.isHidden = true
+        suggestionsView.isHidden = true
        
         // Do any additional setup after loading the view.
     }
@@ -55,13 +73,22 @@ class SearchViewController: UIViewController{
     }
     */
   
+    // MARK: - public methods
+    
+    func setCurrentFilter(filter: String){
+        currentFilter = filter
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            if segue.identifier == Segues.toFilterView{
                let destVC = segue.destination as! FilterViewController
+            
            }
-       }
+          if segue.identifier == Segues.toSuggestionsView{
+                      let destVC = segue.destination as! SuggestionsViewController
+                   
+                  }       }
     
     
    
@@ -92,13 +119,22 @@ extension SearchViewController: SearchInput{
         
     }
     
-    func showSuggestions() {
+    func setSuggestions(suggestion: String) {
+        if let child = self.children[1] as? SuggestionsViewController {
+            child.setSuggestionItem(suggestion: suggestion)
+        }
         
     }
     
-    func initRecipeArray(recipesArray:[RecipeModel]){
-
+    func initRecipeArray(recipesArray:[RecipeModel],from:Int, count: Int,nextUrl: String){
+        self.countNumber = count
+        if (from == 1){
         recipeArray = recipesArray
+        }
+        else{
+            recipeArray = recipeArray+recipesArray
+        }
+        self.nextUrl = nextUrl
         
     }
     
@@ -122,13 +158,23 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
           let recipe = recipeArray[indexPath.row]
         cell.setupCell(title: recipe.title, image: recipe.image, source: recipe.source, health: recipe.healthLabels)
         cell.recipeImage.sd_setImage(with: URL(string: recipe.image!))
+        if indexPath.row == recipeArray.count - 1 { // last cell
+            if countNumber ?? 20 > recipeArray.count { // more items to fetch
+                presenter?.didNeedMoreData(request:nextUrl ?? "")
+                
+            }
+        }
 
           return cell
       }
-      
-       func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-          
-      }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+//         let detailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+//        self.present(detailsViewController, animated: true, completion: nil)
+         //self.navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+
    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         return 160
@@ -140,15 +186,23 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 extension SearchViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("searchText \(searchText)")
+        suggestionsView.isHidden = false
         
-       // presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
+       
         
     }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        suggestionsView.isHidden = false
+        
+    }
+    
+    
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
        print("searchText \(searchBar.text)")
 
       //  print("searchText \(String(describing: searchBar.text))")
+        suggestionsView.isHidden = true
         presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
     }
     
@@ -157,9 +211,8 @@ extension SearchViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 
-        return true
          do {
-            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
+            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z \n].*", options: [])
            if regex.firstMatch(in: text, options: [], range: NSMakeRange(0, text.count)) != nil {
                  return false
 
