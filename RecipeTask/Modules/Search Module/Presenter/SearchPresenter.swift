@@ -128,6 +128,7 @@ extension SearchPresenter : SearchOutput{
        
        func viewDidLoad() {
         view?.setup()
+        view?.setHiddenViews()
        }
     
     func didTapFilterCell(searchBarInput: String, filterType: String){

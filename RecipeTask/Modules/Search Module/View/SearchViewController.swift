@@ -43,9 +43,7 @@ class SearchViewController: UIViewController{
         super.viewDidLoad()
         initPresenter()
         presenter?.viewDidLoad()
-        noSearchLabel.isHidden = false
-        recipesTableView.isHidden = true
-        suggestionsView.isHidden = true
+        
        
         // Do any additional setup after loading the view.
     }
@@ -140,6 +138,13 @@ extension SearchViewController: SearchInput{
     
     func setup(){
         registerCells()
+    }
+    
+    func setHiddenViews() {
+        noSearchLabel.isHidden = false
+        recipesTableView.isHidden = true
+        suggestionsView.isHidden = true
+        
     }
 
 }

@@ -16,6 +16,7 @@ protocol SearchInput: class {
     func setSuggestions(suggestion: String)
     func initRecipeArray(recipesArray:[RecipeModel],from: Int, count: Int,nextUrl: String)
     func setup()
+    func setHiddenViews()
     
 }
 
