@@ -21,13 +21,13 @@ class NetworkManager {
         }
     }
     
-   private func getFullRequest(parameters:[String:String?],url: String)-> String{
+    private func getFullRequest(parameters:[String:String?],url: String)-> String{
         var request = url
-         for param in parameters{
-                       if let value = param.value{
-                           request.append("&\(param.key)=\(value)")
-                       }
-                   }
+        for param in parameters{
+            if let value = param.value{
+                request.append("&\(param.key)=\(value)")
+            }
+        }
         return request
     }
     

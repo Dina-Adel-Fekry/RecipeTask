@@ -31,56 +31,92 @@ class SearchPresenter {
         interactor?.fetchRecipeData(body:body,completionHandler: { (value) in
         //    print((value as? SearchApiModel)?.hits)
             if let response = value as? SearchApiModel {
-                self.getFullResponse(response: response)
+                self.fetchRecipeDataSucceeded(response: response)
             }
             else{
-                self.view?.showError()
-                self.view?.reloadData()
+                self.fetchRecipeDataFailed()
             }
         })
     }
+    
+
+    private func fetchRecipeDataSucceeded(response: SearchApiModel){
+         self.getFullResponse(response: response)
+        
+    }
+    private func fetchRecipeDataFailed(){
+         self.view?.showError()
+         self.view?.reloadData()
+    }
+    
+    private func fetchFilteredData(searchBarInput: String,filterType: String){
+          var body = [String: String?]()
+          body["q"] = searchBarInput
+          body["health"] = filterType
+          interactor?.fetchRecipeData(body:body,completionHandler: { (value) in
+              if let response = value as? SearchApiModel {
+                self.fetchFilteredDataSucceeded(response: response)
+              }
+              else{
+                self.fetchFilteredDataFailed()
+              }
+
+          })
+      }
+    
+    private func fetchFilteredDataSucceeded(response: SearchApiModel){
+         self.getFullResponse(response: response)
+        
+    }
+    private func fetchFilteredDataFailed(){
+         self.view?.showError()
+         self.view?.reloadData()
+    }
+      
+      private func fetchMoreData(request: String){
+          interactor?.fetchMoreRecipeData(request:request,completionHandler: { (value) in
+              if let response = value as? SearchApiModel {
+                  self.fetchMoreDataSucceeded(response: response)
+              }
+              else{
+                self.fetchMoreDataFailed()
+              }
+
+          })
+      }
+    
+    private func fetchMoreDataSucceeded(response: SearchApiModel){
+            self.getFullResponse(response: response)
+           
+       }
+       private func fetchMoreDataFailed(){
+            self.view?.showError()
+            self.view?.reloadData()
+       }
     
     private func getFullResponse(response: SearchApiModel){
         let recipesViewModel = RecipesViewModel(searchApiModel: response)
         self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes, from: recipesViewModel.from ?? 1, count: recipesViewModel.count ?? 20,nextUrl: recipesViewModel.nextPageUrl ?? "")
         if(recipesViewModel.recipes.isEmpty){
-            self.view?.showError()
+            getFullResponseFailed()
         }
         else{
-        self.view?.updateView()
+             getFullResponseSucceeded()
         }
-        self.view?.reloadData()
+        
         
     }
     
-    private func fetchFilteredData(searchBarInput: String,filterType: String){
-        var body = [String: String?]()
-        body["q"] = searchBarInput
-        body["health"] = filterType
-        interactor?.fetchRecipeData(body:body,completionHandler: { (value) in
-            if let response = value as? SearchApiModel {
-                self.getFullResponse(response: response)
-            }
-            else{
-                self.view?.showError()
-                self.view?.reloadData()
-            }
-
-        })
+    private func getFullResponseSucceeded(){
+         self.view?.updateView()
+        self.view?.reloadData()
+        
+    }
+    private func getFullResponseFailed(){
+         self.view?.showError()
+         self.view?.reloadData()
     }
     
-    private func fetchMoreData(request: String){
-        interactor?.fetchMoreRecipeData(request:request,completionHandler: { (value) in
-            if let response = value as? SearchApiModel {
-                self.getFullResponse(response: response)
-            }
-            else{
-                self.view?.showError()
-                self.view?.reloadData()
-            }
-
-        })
-    }
     
 }
 

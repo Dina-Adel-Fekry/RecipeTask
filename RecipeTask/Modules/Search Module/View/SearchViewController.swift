@@ -124,7 +124,6 @@ extension SearchViewController: SearchInput{
         noSearchLabel?.isHidden = false
         recipesTableView?.isHidden = true
         suggestionsView?.isHidden = true
-        
     }
     func setSearchBarText(suggestion: String) {
         searchBar.text = suggestion
@@ -161,51 +160,52 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             }
             
         }
-        
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print(indexPath.row)
-            print(recipeArray[indexPath.row].title)
-            presenter?.navigateToDetails(recipe: recipeArray[indexPath.row])
-            //TODO: - presenter?.didSelectRoeAt(indexPath.row)
-        }
-        
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 160
-            //RecipeRowHeight
-        }
     }
     
-}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        print(recipeArray[indexPath.row].title)
+        presenter?.navigateToDetails(recipe: recipeArray[indexPath.row])
+        //TODO: - presenter?.didSelectRoeAt(indexPath.row)
+    }
     
-    extension SearchViewController: UISearchBarDelegate{
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            print("searchText \(searchText)")
-            suggestionsView.isHidden = false
-            
-            // presenter
-            
-        }
-        func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-            suggestionsView.isHidden = false
-            
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160.0
+        //RecipeRowHeight
+    }
+}
+
+
+
+extension SearchViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText \(searchText)")
+        suggestionsView.isHidden = false
         
+        // presenter
         
+    }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        suggestionsView.isHidden = false
         
-        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            print("searchText \(searchBar.text)")
-            
-            //  print("searchText \(String(describing: searchBar.text))")
-            suggestionsView.isHidden = true
-            presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
-        }
+    }
+    
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchText \(searchBar.text)")
         
+        //  print("searchText \(String(describing: searchBar.text))")
+        suggestionsView.isHidden = true
+        presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
+    }
+    
+    
+    
+    
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return text.englishLettersOnly()
         
-        
-        
-        func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            return text.englishLettersOnly()
-            
-        }
+    }
 }
 

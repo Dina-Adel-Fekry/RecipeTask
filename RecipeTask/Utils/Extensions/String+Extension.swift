@@ -12,7 +12,7 @@ extension String{
     func englishLettersOnly()-> Bool{
         
         do {
-            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z \n].*", options: [])
+            let regex = try NSRegularExpression(pattern: AppText.ENGLISH_LETTERS_ONLY_REGEX.rawValue, options: [])
             if regex.firstMatch(in: self, options: [], range: NSMakeRange(0, self.count)) != nil {
                 return false
             }

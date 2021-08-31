@@ -9,7 +9,7 @@
 import UIKit
 
 class SuggestionsTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var suggetionLabel: UILabel!
     func setupCell(suggestion : String ){
         suggetionLabel?.text = suggestion
