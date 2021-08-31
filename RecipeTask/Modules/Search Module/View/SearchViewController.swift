@@ -25,11 +25,11 @@ class SearchViewController: UIViewController{
     private var response = [[String:Any]]()
     private var  currentFilter : String?{
         didSet{
-            if (currentFilter == "all"){
-                presenter?.didTapSearchBar(searchBarInput: searchBar?.text ?? "meat")
+            if (currentFilter == FilterName.ALL.rawValue){
+                presenter?.didTapSearchBar(searchBarInput: searchBar?.text ?? "")
             }
             else{
-                presenter?.didTapFilterCell(searchBarInput: searchBar?.text ?? "meat", filterType: currentFilter ?? "low-sugar")
+                presenter?.didTapFilterCell(searchBarInput: searchBar?.text ?? "", filterType: currentFilter ?? "")
             }
         }
     }
@@ -60,7 +60,7 @@ class SearchViewController: UIViewController{
     
     
     private func registerCells(){
-        self.recipesTableView?.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier:Identifiers.RECIPE_CELL.rawValue )
+        self.recipesTableView?.register(UINib(nibName: NibName.RECIPE_TABLE_VIEW_CELL.rawValue, bundle: nil), forCellReuseIdentifier:Identifiers.RECIPE_CELL.rawValue )
         
     }
     
@@ -142,12 +142,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell",for: indexPath) as? RecipeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.RECIPE_CELL.rawValue,for: indexPath) as? RecipeTableViewCell
         let recipe = recipeArray[indexPath.row]
         cell?.setupCell(title: recipe.title, image: recipe.image, source: recipe.source, health: recipe.healthLabels)
-        
-        
-        
         return cell ?? UITableViewCell()
     }
     
@@ -156,22 +153,18 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             if countNumber ?? 20 > recipeArray.count { // more items to fetch
                 presenter?.didNeedMoreData(request:nextUrl ?? "")
                 
-                
             }
-            
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        print(recipeArray[indexPath.row].title)
         presenter?.navigateToDetails(recipe: recipeArray[indexPath.row])
         //TODO: - presenter?.didSelectRoeAt(indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160.0
-        //RecipeRowHeight
+        return CGFloat(Dimension.TABLE_VIEW_HEIGHT.rawValue)
     }
 }
 
@@ -193,11 +186,9 @@ extension SearchViewController: UISearchBarDelegate{
     
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searchText \(searchBar.text)")
-        
-        //  print("searchText \(String(describing: searchBar.text))")
+        print("searchText \(String(describing: searchBar.text))")
         suggestionsView.isHidden = true
-        presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
+        presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "")
     }
     
     

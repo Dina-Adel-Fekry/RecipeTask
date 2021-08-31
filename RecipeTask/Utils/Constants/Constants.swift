@@ -28,11 +28,12 @@ enum AppText: String{
     case SEPARATOR = "\u{0085}"
     case ENGLISH_LETTERS_ONLY_REGEX = ".*[^A-Za-z \n].*"
     case ERROR_MSG = "Error in Using Search Bar"
+    case NOT_AVAILABLE = "Not Available"
 }
 enum Dimension:Float {
     case COLLECTION_VIEW_WIDTH = 120.0
     case COLLECTION_VIEW_HEIGHT = 60.0
-    case TABLE_VIEW_HEIGHT = 120.05
+    case TABLE_VIEW_HEIGHT = 160.0
 }
 enum Key: String{
     case  SAVED_STRING_ARRAY = "SavedStringArray"

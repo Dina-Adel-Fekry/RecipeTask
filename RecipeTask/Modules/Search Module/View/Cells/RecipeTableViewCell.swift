@@ -26,7 +26,7 @@ class RecipeTableViewCell: UITableViewCell {
         recipeImage.image = UIImage(named: (image ?? ""))
         recipeImage.sd_setImage(with: URL(string: image ?? ""))
         recipeHelthLabels.text = health?.joined(separator: ",")
-            
+        
     }
     
 }

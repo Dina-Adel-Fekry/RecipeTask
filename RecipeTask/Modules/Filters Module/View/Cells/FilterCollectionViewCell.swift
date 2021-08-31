@@ -9,11 +9,11 @@
 import UIKit
 
 class FilterCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var filterHealthLabel: UILabel!
- 
+    
     func setupCell(healthName : String){
         filterHealthLabel.text = healthName
     }
-
+    
 }

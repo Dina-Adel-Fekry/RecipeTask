@@ -15,11 +15,11 @@ class FilterViewController: UIViewController{
     
     private var items = [String]()
     override func viewDidLoad() {
-          super.viewDidLoad()
-          initPresenter()
-          presenter?.viewDidLoad()
-
-      }
+        super.viewDidLoad()
+        initPresenter()
+        presenter?.viewDidLoad()
+        
+    }
     
     // MARK: - private methods
     private func initPresenter(){
@@ -28,7 +28,7 @@ class FilterViewController: UIViewController{
     
     
     private func registerCells(){
-        filterCollectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
+        filterCollectionView.register(UINib(nibName: NibName.FILTER_COLLECTION_VIEW_CELL.rawValue, bundle: nil), forCellWithReuseIdentifier: Identifiers.FILTER_COLLECTION_VIEW_CELL.rawValue)
     }
     
 }
@@ -39,10 +39,10 @@ extension FilterViewController: FilterInput{
         }
     }
     func initFilterArray(){
-        items.append("All")
-        items.append("Low Sugar")
-        items.append("Keto")
-        items.append("Vegan")
+        items.append(FilterTypes.ALL.rawValue)
+        items.append(FilterTypes.LOW_SUGAR.rawValue)
+        items.append(FilterTypes.KETO.rawValue)
+        items.append(FilterTypes.VEGAN.rawValue)
     }
     func setup(){
         registerCells()
@@ -53,25 +53,25 @@ extension FilterViewController: FilterInput{
 extension FilterViewController: UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return items.count
-     }
-     
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCollectionViewCell", for: indexPath) as? FilterCollectionViewCell
-         let health = items[indexPath.row]
-         cell?.setupCell(healthName: health)
-        return cell ?? UICollectionViewCell()
-     }
-     
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-         print("You selected cell #\(indexPath.item)")
-         presenter?.didTapFilterHealth(cellNumber: indexPath.item)
-     }
+        return items.count
+    }
     
-     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-     {
-        return CGSize(width: 120.0, height: 60.0)
-     }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.FILTER_COLLECTION_VIEW_CELL.rawValue, for: indexPath) as? FilterCollectionViewCell
+        let health = items[indexPath.row]
+        cell?.setupCell(healthName: health)
+        return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print("You selected cell #\(indexPath.item)")
+        presenter?.didTapFilterHealth(cellNumber: indexPath.item)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        return CGSize(width:CGFloat(Dimension.COLLECTION_VIEW_WIDTH.rawValue), height:CGFloat(Dimension.COLLECTION_VIEW_HEIGHT.rawValue))
+    }
     
 }

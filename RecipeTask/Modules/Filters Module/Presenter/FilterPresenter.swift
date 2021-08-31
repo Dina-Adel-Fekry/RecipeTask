@@ -12,13 +12,13 @@ class FilterPresenter {
     
     
     // MARK: - Properties
-   private weak var view: FilterInput?
-   private weak var searchView: SearchInput?
-   private var interactor: FilterInteractor?
-   private var router: FilterRouter?
+    private weak var view: FilterInput?
+    private weak var searchView: SearchInput?
+    private var interactor: FilterInteractor?
+    private var router: FilterRouter?
     
-   private var filterType: String?
-
+    private var filterType: String?
+    
     
     
     
@@ -32,32 +32,32 @@ class FilterPresenter {
 }
 
 extension FilterPresenter : FilterOutput{
-   
+    
     
     func didTapFilterHealth(cellNumber: Int) {
         switch cellNumber {
         case 0:
-            filterType = "all"
-
+            filterType = FilterName.ALL.rawValue
+            
         case 1:
-            filterType = "low-sugar"
-
+            filterType = FilterName.LOW_SUGAR.rawValue
+            
         case 2:
-            filterType = "keto-friendly"
-
+            filterType = FilterName.KETO.rawValue
+            
         case 3:
-            filterType = "vegan"
+            filterType = FilterName.VEGAN.rawValue
         default:
-            print("Not Available")
+            print(AppText.NOT_AVAILABLE.rawValue)
         }
-        self.view?.updateView(filterType:filterType ?? "low-sugar")
+        self.view?.updateView(filterType:filterType ?? "")
     }
     
-   
     
-       func viewDidLoad() {
+    
+    func viewDidLoad() {
         view?.initFilterArray()
         view?.setup()
-       }
+    }
 }
 
