@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qly-fG-jvl">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Suggestions View Controller-->
+        <scene sceneID="1X7-Cx-9cS">
+            <objects>
+                <viewController id="qly-fG-jvl" customClass="SuggestionsViewController" customModule="RecipeTask" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xuF-3h-bgG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GPE-xB-kD3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionCell" rowHeight="47" id="T58-jg-Fjq" customClass="SuggestionsTableViewCell" customModule="RecipeTask" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="47"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T58-jg-Fjq" id="0hR-V1-Hw7">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="47"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qly-fG-jvl" id="dSu-Cg-cPO"/>
+                                    <outlet property="delegate" destination="qly-fG-jvl" id="Ckc-ln-Vnu"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GPE-xB-kD3" firstAttribute="leading" secondItem="j8q-jd-6TZ" secondAttribute="leading" id="4V4-qi-zIb"/>
+                            <constraint firstItem="GPE-xB-kD3" firstAttribute="trailing" secondItem="j8q-jd-6TZ" secondAttribute="trailing" id="Xi5-gB-gsV"/>
+                            <constraint firstItem="GPE-xB-kD3" firstAttribute="bottom" secondItem="j8q-jd-6TZ" secondAttribute="bottom" id="ac6-w1-E4Q"/>
+                            <constraint firstItem="GPE-xB-kD3" firstAttribute="top" secondItem="xuF-3h-bgG" secondAttribute="top" id="xDU-lX-MsK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="j8q-jd-6TZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="suggestionTableView" destination="GPE-xB-kD3" id="xDT-Gb-sJn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qoc-Nz-Sqp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2625" y="-31"/>
+        </scene>
+    </scenes>
+</document>

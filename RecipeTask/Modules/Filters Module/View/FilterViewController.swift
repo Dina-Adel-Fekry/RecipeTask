@@ -11,20 +11,14 @@ import UIKit
 class FilterViewController: UIViewController{
     
     @IBOutlet weak var filterCollectionView: UICollectionView!
-    let reuseIdentifier = "FilterCollectionViewCell"
-     var presenter : FilterOutput?
+    private var presenter : FilterOutput?
     
-     var items = [String]()
+    private var items = [String]()
     override func viewDidLoad() {
           super.viewDidLoad()
           initPresenter()
           presenter?.viewDidLoad()
-          
-         
-        
-          
 
-          // Do any additional setup after loading the view.
       }
     
     // MARK: - private methods
@@ -37,17 +31,6 @@ class FilterViewController: UIViewController{
         filterCollectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 extension FilterViewController: FilterInput{
     func updateView(filterType: String){
@@ -74,7 +57,7 @@ extension FilterViewController: UICollectionViewDataSource,UICollectionViewDeleg
      }
      
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FilterCollectionViewCell
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCollectionViewCell", for: indexPath) as? FilterCollectionViewCell
          let health = items[indexPath.row]
          cell?.setupCell(healthName: health)
         return cell ?? UICollectionViewCell()

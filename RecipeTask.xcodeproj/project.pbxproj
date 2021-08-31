@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		692C367D26DE7AA000F7255F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692C367C26DE7AA000F7255F /* String+Extension.swift */; };
+		692C367F26DE818F00F7255F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692C367E26DE818F00F7255F /* Constants.swift */; };
 		692F491326DBEC0C005026E6 /* SuggestionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692F491126DBEC0C005026E6 /* SuggestionsTableViewCell.swift */; };
 		692F491426DBEC0C005026E6 /* SuggestionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 692F491226DBEC0C005026E6 /* SuggestionsTableViewCell.xib */; };
 		692F491626DBECBF005026E6 /* SuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692F491526DBECBF005026E6 /* SuggestionsViewController.swift */; };
@@ -22,6 +24,9 @@
 		692F493726DCE0B5005026E6 /* DetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692F493126DCE0B5005026E6 /* DetailsRouter.swift */; };
 		692F493A26DD28B6005026E6 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692F493926DD28B6005026E6 /* UIApplication+Extension.swift */; };
 		692F493C26DE531D005026E6 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692F493B26DE531D005026E6 /* DependencyFactory.swift */; };
+		692F493E26DE7122005026E6 /* SuggestionsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692F493D26DE7122005026E6 /* SuggestionsStoryboard.storyboard */; };
+		692F494026DE7532005026E6 /* SearchStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692F493F26DE7532005026E6 /* SearchStoryBoard.storyboard */; };
+		692F494226DE75BD005026E6 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692F494126DE75BD005026E6 /* Filter.storyboard */; };
 		693CBAE426D45B07009EB773 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693CBAE326D45B07009EB773 /* NetworkManager.swift */; };
 		693CBAEC26D46286009EB773 /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693CBAEB26D46286009EB773 /* FilterPresenter.swift */; };
 		693CBAEE26D4629C009EB773 /* FilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693CBAED26D4629C009EB773 /* FilterRouter.swift */; };
@@ -34,7 +39,6 @@
 		69632A6B26D3BB4C00371CF4 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69632A6A26D3BB4C00371CF4 /* SearchRouter.swift */; };
 		69632A6D26D3BB6200371CF4 /* SearchProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69632A6C26D3BB6200371CF4 /* SearchProtocols.swift */; };
 		69632A6F26D3CC0700371CF4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69632A6E26D3CC0700371CF4 /* SearchViewController.swift */; };
-		69632A7126D3CC8500371CF4 /* SearchStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69632A7026D3CC8500371CF4 /* SearchStoryBoard.storyboard */; };
 		69632A7326D3CCE700371CF4 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69632A7226D3CCE700371CF4 /* RecipeTableViewCell.swift */; };
 		69632A7526D3E07500371CF4 /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69632A7426D3E07500371CF4 /* RecipeTableViewCell.xib */; };
 		69A3EE7726D265D50024D1CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EE7626D265D50024D1CF /* AppDelegate.swift */; };
@@ -70,6 +74,8 @@
 
 /* Begin PBXFileReference section */
 		443F0EB2C68E1B4C2963AB9D /* Pods-RecipeTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeTask.release.xcconfig"; path = "Target Support Files/Pods-RecipeTask/Pods-RecipeTask.release.xcconfig"; sourceTree = "<group>"; };
+		692C367C26DE7AA000F7255F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		692C367E26DE818F00F7255F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		692F491126DBEC0C005026E6 /* SuggestionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsTableViewCell.swift; sourceTree = "<group>"; };
 		692F491226DBEC0C005026E6 /* SuggestionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionsTableViewCell.xib; sourceTree = "<group>"; };
 		692F491526DBECBF005026E6 /* SuggestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +91,9 @@
 		692F493126DCE0B5005026E6 /* DetailsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsRouter.swift; sourceTree = "<group>"; };
 		692F493926DD28B6005026E6 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		692F493B26DE531D005026E6 /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
+		692F493D26DE7122005026E6 /* SuggestionsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SuggestionsStoryboard.storyboard; sourceTree = "<group>"; };
+		692F493F26DE7532005026E6 /* SearchStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchStoryBoard.storyboard; sourceTree = "<group>"; };
+		692F494126DE75BD005026E6 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		693CBAE326D45B07009EB773 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		693CBAEB26D46286009EB773 /* FilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
 		693CBAED26D4629C009EB773 /* FilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRouter.swift; sourceTree = "<group>"; };
@@ -97,7 +106,6 @@
 		69632A6A26D3BB4C00371CF4 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		69632A6C26D3BB6200371CF4 /* SearchProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProtocols.swift; sourceTree = "<group>"; };
 		69632A6E26D3CC0700371CF4 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		69632A7026D3CC8500371CF4 /* SearchStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchStoryBoard.storyboard; sourceTree = "<group>"; };
 		69632A7226D3CCE700371CF4 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		69632A7426D3E07500371CF4 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeTableViewCell.xib; sourceTree = "<group>"; };
 		69A3EE7326D265D50024D1CF /* RecipeTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +225,7 @@
 			children = (
 				692F491726DBF500005026E6 /* Cells */,
 				692F491526DBECBF005026E6 /* SuggestionsViewController.swift */,
+				692F493D26DE7122005026E6 /* SuggestionsStoryboard.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				692F493926DD28B6005026E6 /* UIApplication+Extension.swift */,
+				692C367C26DE7AA000F7255F /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +302,7 @@
 			children = (
 				69CD25EE26D51913005EB592 /* Cells */,
 				69A3EEC126D295320024D1CF /* FilterViewController.swift */,
+				692F494126DE75BD005026E6 /* Filter.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -450,7 +461,7 @@
 		69A3EEA926D2769E0024D1CF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				69632A7026D3CC8500371CF4 /* SearchStoryBoard.storyboard */,
+				692F493F26DE7532005026E6 /* SearchStoryBoard.storyboard */,
 				69632A6E26D3CC0700371CF4 /* SearchViewController.swift */,
 				69A3EEB426D2839A0024D1CF /* Cells */,
 			);
@@ -460,6 +471,7 @@
 		69A3EEAA26D276A80024D1CF /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				692C367E26DE818F00F7255F /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -639,12 +651,14 @@
 			files = (
 				69A3EE8326D265DA0024D1CF /* LaunchScreen.storyboard in Resources */,
 				69A3EE8026D265DA0024D1CF /* Assets.xcassets in Resources */,
+				692F494226DE75BD005026E6 /* Filter.storyboard in Resources */,
 				692F493426DCE0B5005026E6 /* DetailsStoryboard.storyboard in Resources */,
-				69632A7126D3CC8500371CF4 /* SearchStoryBoard.storyboard in Resources */,
+				692F494026DE7532005026E6 /* SearchStoryBoard.storyboard in Resources */,
 				69632A6126D30CB700371CF4 /* FilterCollectionViewCell.xib in Resources */,
 				69A3EE7E26D265D50024D1CF /* Main.storyboard in Resources */,
 				692F491426DBEC0C005026E6 /* SuggestionsTableViewCell.xib in Resources */,
 				69632A7526D3E07500371CF4 /* RecipeTableViewCell.xib in Resources */,
+				692F493E26DE7122005026E6 /* SuggestionsStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,12 +741,14 @@
 				69632A6D26D3BB6200371CF4 /* SearchProtocols.swift in Sources */,
 				692F491B26DC2BCE005026E6 /* SuggestionsPresenter.swift in Sources */,
 				69632A6926D3B7D500371CF4 /* SearchInteractor.swift in Sources */,
+				692C367D26DE7AA000F7255F /* String+Extension.swift in Sources */,
 				692F493C26DE531D005026E6 /* DependencyFactory.swift in Sources */,
 				692F491F26DC2BFA005026E6 /* SuggestionsInteractor.swift in Sources */,
 				693CBAF026D462B6009EB773 /* FilterInteractor.swift in Sources */,
 				693CBAEC26D46286009EB773 /* FilterPresenter.swift in Sources */,
 				69A3EE7726D265D50024D1CF /* AppDelegate.swift in Sources */,
 				693CBAF226D46325009EB773 /* FilterProtocols.swift in Sources */,
+				692C367F26DE818F00F7255F /* Constants.swift in Sources */,
 				692F493526DCE0B5005026E6 /* DetailsProtocols.swift in Sources */,
 				69632A6B26D3BB4C00371CF4 /* SearchRouter.swift in Sources */,
 				69A3EE7926D265D50024D1CF /* SceneDelegate.swift in Sources */,

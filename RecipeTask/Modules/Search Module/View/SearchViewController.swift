@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class SearchViewController: UIViewController{
-   
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var recipesTableView: UITableView!
     @IBOutlet weak var noSearchLabel: UILabel!
@@ -18,11 +18,11 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var FilterView: UIView!
     
     
-    var recipeArray  = [RecipeModel]()
-    var fromIndex : Int?
-    var countNumber : Int?
-    var nextUrl : String?
-    var response = [[String:Any]]()
+    private var recipeArray  = [RecipeModel]()
+    private var fromIndex : Int?
+    private var countNumber : Int?
+    private var nextUrl : String?
+    private var response = [[String:Any]]()
     private var  currentFilter : String?{
         didSet{
             if (currentFilter == "all"){
@@ -36,18 +36,16 @@ class SearchViewController: UIViewController{
     
     private var currentSuggestion: String?{
         didSet{
-        presenter?.didChooseSuggestion(suggestion: currentSuggestion ?? "")
+            presenter?.didChooseSuggestion(suggestion: currentSuggestion ?? "")
         }
     }
     
-    var presenter : SearchOutput?
+    private var presenter : SearchOutput?
     override func viewDidLoad() {
         super.viewDidLoad()
         initPresenter()
         presenter?.viewDidLoad()
         
-       
-        // Do any additional setup after loading the view.
     }
     
     
@@ -62,21 +60,12 @@ class SearchViewController: UIViewController{
     
     
     private func registerCells(){
-        self.recipesTableView?.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
+        self.recipesTableView?.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier:Identifiers.RECIPE_CELL.rawValue )
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-  
+    
+    
     // MARK: - public methods
     
     func setCurrentFilter(filter: String){
@@ -86,7 +75,7 @@ class SearchViewController: UIViewController{
         currentSuggestion = suggestion
     }
     
-    }
+}
 
 
 
@@ -118,7 +107,7 @@ extension SearchViewController: SearchInput{
     func initRecipeArray(recipesArray:[RecipeModel],from:Int, count: Int,nextUrl: String){
         self.countNumber = count
         if (from == 1){
-        recipeArray = recipesArray
+            recipeArray = recipesArray
         }
         else{
             recipeArray = recipeArray+recipesArray
@@ -141,86 +130,82 @@ extension SearchViewController: SearchInput{
         searchBar.text = suggestion
         suggestionsView.isHidden = true
     }
-
+    
 }
 
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           
-          return recipeArray.count
-          
-      }
-
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          var cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell",for: indexPath) as? RecipeTableViewCell
-          let recipe = recipeArray[indexPath.row]
+        
+        return recipeArray.count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell",for: indexPath) as? RecipeTableViewCell
+        let recipe = recipeArray[indexPath.row]
         cell?.setupCell(title: recipe.title, image: recipe.image, source: recipe.source, health: recipe.healthLabels)
+        
+        
+        
+        return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == recipeArray.count - 1 { // last cell
             if countNumber ?? 20 > recipeArray.count { // more items to fetch
                 presenter?.didNeedMoreData(request:nextUrl ?? "")
                 
+                
             }
+            
         }
-
-        return cell ?? UITableViewCell()
-      }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        print(recipeArray[indexPath.row].title)
-        presenter?.navigateToDetails(recipe: recipeArray[indexPath.row])
-        //TODO: - presenter?.didSelectRoeAt(indexPath.row)
-    }
-
-   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160
-    //RecipeRowHeight
-    }
-}
-
-
-
-extension SearchViewController: UISearchBarDelegate{
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("searchText \(searchText)")
-        suggestionsView.isHidden = false
         
-       // presenter
-        
-    }
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        suggestionsView.isHidden = false
-        
-    }
-    
-    
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-       print("searchText \(searchBar.text)")
-
-      //  print("searchText \(String(describing: searchBar.text))")
-        suggestionsView.isHidden = true
-        presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
-    }
-    
-
-
-    
-    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-
-         do {
-            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z \n].*", options: [])
-           if regex.firstMatch(in: text, options: [], range: NSMakeRange(0, text.count)) != nil {
-                 return false
-            }
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print(indexPath.row)
+            print(recipeArray[indexPath.row].title)
+            presenter?.navigateToDetails(recipe: recipeArray[indexPath.row])
+            //TODO: - presenter?.didSelectRoeAt(indexPath.row)
         }
-       catch {
-           print("Error in Using Search Bar")
+        
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 160
+            //RecipeRowHeight
         }
-       return true
-   }
-
+    }
     
 }
+    
+    extension SearchViewController: UISearchBarDelegate{
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            print("searchText \(searchText)")
+            suggestionsView.isHidden = false
+            
+            // presenter
+            
+        }
+        func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+            suggestionsView.isHidden = false
+            
+        }
+        
+        
+        
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            print("searchText \(searchBar.text)")
+            
+            //  print("searchText \(String(describing: searchBar.text))")
+            suggestionsView.isHidden = true
+            presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "meat")
+        }
+        
+        
+        
+        
+        func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            return text.englishLettersOnly()
+            
+        }
+}
+

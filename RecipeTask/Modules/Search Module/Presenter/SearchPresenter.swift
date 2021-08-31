@@ -9,12 +9,10 @@
 import Foundation
 class SearchPresenter {
     
-    
-    
     // MARK: - Properties
-    weak var view: SearchInput?
-    var interactor: SearchInteractor?
-    var router: SearchRouter?
+   private weak var view: SearchInput?
+   private var interactor: SearchInteractor?
+   private var router: SearchRouter?
     
     
     
@@ -60,65 +58,30 @@ class SearchPresenter {
         body["q"] = searchBarInput
         body["health"] = filterType
         interactor?.fetchRecipeData(body:body,completionHandler: { (value) in
-        //    print((value as? SearchApiModel)?.hits)
-            
             if let response = value as? SearchApiModel {
                 self.getFullResponse(response: response)
-//                let recipesViewModel = RecipesViewModel(searchApiModel: response)
-//                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes, from: recipesViewModel.from ?? 1, count: recipesViewModel.count ?? 20,nextUrl: recipesViewModel.nextPageUrl ?? "")
-//                if(recipesViewModel.recipes.isEmpty){
-//                    self.view?.showError()
-//                }
-//                else{
-//                self.view?.updateView()
-//
-//
-//                }
-//                self.view?.reloadData()
             }
             else{
                 self.view?.showError()
                 self.view?.reloadData()
             }
-            
-            
-            
 
         })
     }
     
     private func fetchMoreData(request: String){
         interactor?.fetchMoreRecipeData(request:request,completionHandler: { (value) in
-        //    print((value as? SearchApiModel)?.hits)
-            
             if let response = value as? SearchApiModel {
                 self.getFullResponse(response: response)
-//                let recipesViewModel = RecipesViewModel(searchApiModel: response)
-//                self.view?.initRecipeArray(recipesArray: recipesViewModel.recipes, from: recipesViewModel.from ?? 1, count: recipesViewModel.count ?? 20,nextUrl: recipesViewModel.nextPageUrl ?? "")
-//                if(recipesViewModel.recipes.isEmpty){
-//                    self.view?.showError()
-//                }
-//                else{
-//                self.view?.updateView()
-//
-//
-//                }
-//                self.view?.reloadData()
             }
             else{
                 self.view?.showError()
                 self.view?.reloadData()
             }
-            
-            
-            
 
         })
     }
     
-
-
-
 }
 
 extension SearchPresenter : SearchOutput{

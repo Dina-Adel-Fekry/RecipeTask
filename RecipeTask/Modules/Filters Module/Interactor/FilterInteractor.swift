@@ -8,9 +8,5 @@
 
 import Foundation
 class FilterInteractor{
-//    var network = NetworkManager()
-//    func fetchRecipeDataFiltered(completionHandler: @escaping (Any?)-> Void,filterType: String,searchBarInput: String){
-//        
-//       // network.fetchData(completionHandler: completionHandler)
-//    }
+
 }

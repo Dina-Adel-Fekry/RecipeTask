@@ -9,9 +9,9 @@
 import Foundation
 class DetailsPresenter {
     
-    weak var view: DetailsInput?
-    var interactor: DetailsInteractor?
-    var router: DetailsRouter?
+   private weak var view: DetailsInput?
+   private var interactor: DetailsInteractor?
+   private var router: DetailsRouter?
 
     // MARK: - Methods
     init(view : DetailsInput,interactor: DetailsInteractor,router:DetailsRouter){

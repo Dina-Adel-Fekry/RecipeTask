@@ -8,13 +8,11 @@
 
 import Foundation
 class SuggestionsPresenter {
-    
-    
-    
+  
     // MARK: - Properties
-    weak var view: SuggestionInput?
-    var interactor: SuggestionsInteractor?
-    var router: SuggestionsRouter?
+   private weak var view: SuggestionInput?
+   private var interactor: SuggestionsInteractor?
+   private var router: SuggestionsRouter?
 
     // MARK: - Methods
     init(view : SuggestionInput,interactor: SuggestionsInteractor,router:SuggestionsRouter){
@@ -38,7 +36,6 @@ extension SuggestionsPresenter : SuggestionOutput{
     }
     
     func viewDidLoad() {
-       // view?.initSuggestionsArray(suggestion:suggestion)
         view?.setup()
         
     }

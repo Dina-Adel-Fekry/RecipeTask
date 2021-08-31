@@ -12,13 +12,13 @@ class FilterPresenter {
     
     
     // MARK: - Properties
-    weak var view: FilterInput?
-    weak var searchView: SearchInput?
-    var interactor: FilterInteractor?
-    var router: FilterRouter?
+   private weak var view: FilterInput?
+   private weak var searchView: SearchInput?
+   private var interactor: FilterInteractor?
+   private var router: FilterRouter?
     
-    var filterType: String?
-    var searchInputText: String?
+   private var filterType: String?
+
     
     
     
@@ -50,7 +50,6 @@ extension FilterPresenter : FilterOutput{
         default:
             print("Not Available")
         }
-        //presenter -> view of filter -> set search
         self.view?.updateView(filterType:filterType ?? "low-sugar")
     }
     

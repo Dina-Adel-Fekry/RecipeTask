@@ -22,19 +22,18 @@ class DetailsViewController: UIViewController {
         presenter?.didTapWebsiteButton()
         
     }
-    var currentRecipe:RecipeModel?{
+   private var currentRecipe:RecipeModel?{
         didSet{
             presenter?.didDataReceived()
         }
     }
     
-    var presenter : DetailsOutput?
+   private var presenter : DetailsOutput?
     override func viewDidLoad() {
         super.viewDidLoad()
         initPresenter()
         presenter?.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     private func initPresenter(){
@@ -60,17 +59,10 @@ class DetailsViewController: UIViewController {
                let activityVC = UIActivityViewController(activityItems: objectToShare, applicationActivities: nil)
                activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
                self.present(activityVC, animated: true, completion: nil)
-           }    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+           }
+        
     }
-    */
-
+   
 }
 
 extension DetailsViewController: DetailsInput{

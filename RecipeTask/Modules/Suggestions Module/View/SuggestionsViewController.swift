@@ -10,13 +10,11 @@ import UIKit
 
 class SuggestionsViewController: UIViewController {
     
-    @IBOutlet weak var suggestionTableView: UITableView!
-    var presenter : SuggestionOutput?
+  @IBOutlet weak var suggestionTableView: UITableView!
     
-    
-    var  currentSuggestion : String?{
+   private var presenter : SuggestionOutput?
+   private var  currentSuggestion : String?{
         didSet{
-            //  viewDidLoad()
             presenter?.viewSuggestion(suggestion: currentSuggestion ?? "")
         }
         
@@ -28,9 +26,7 @@ class SuggestionsViewController: UIViewController {
         
         initPresenter()
         presenter?.viewDidLoad()
-        
-        
-        // Do any additional setup after loading the view.
+
     }
     
     private func initPresenter(){
@@ -46,16 +42,7 @@ class SuggestionsViewController: UIViewController {
         currentSuggestion = suggestion
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+ 
 }
 extension SuggestionsViewController: SuggestionInput{
     func initSuggestionsArray(suggestion: String) {

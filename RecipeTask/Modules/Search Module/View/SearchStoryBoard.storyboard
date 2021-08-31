@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -52,7 +51,7 @@
                                     <constraint firstAttribute="height" constant="91" id="M33-FO-5QU"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="D8e-Qe-BYi" kind="embed" identifier="toFilterCollectionView" id="0sq-W4-R9V"/>
+                                    <segue destination="p9X-Og-aOe" kind="embed" id="Chw-xc-Bgb"/>
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Search Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zx-cd-7fU">
@@ -69,7 +68,7 @@
                                     <constraint firstAttribute="width" constant="382" id="8iR-hI-gas"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="tSW-Xn-fED" kind="embed" identifier="toSuggestionsView" id="jY4-qW-AvH"/>
+                                    <segue destination="5Vy-s8-yUS" kind="embed" id="YvW-Jg-NFa"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -103,65 +102,21 @@
             </objects>
             <point key="canvasLocation" x="1497.1014492753625" y="-111.16071428571428"/>
         </scene>
-        <!--Filter View Controller-->
-        <scene sceneID="BMc-i0-PR7">
+        <!--Filter-->
+        <scene sceneID="kc4-LE-Ykl">
             <objects>
-                <viewController id="D8e-Qe-BYi" customClass="FilterViewController" customModule="RecipeTask" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3n8-Ya-5PP">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="91"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MoK-c8-TL7">
-                                <rect key="frame" x="0.0" y="0.0" width="374" height="91"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uUu-6E-rAq">
-                                    <size key="itemSize" width="120" height="60"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCollectionViewCell" id="YSQ-d4-SuH" customClass="FilterCollectionViewCell" customModule="RecipeTask" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="15.5" width="120" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="EUt-zm-syl">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                        <color key="backgroundColor" red="0.75367775690000005" green="0.74752825540000001" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <size key="customSize" width="120" height="60"/>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="D8e-Qe-BYi" id="wQg-Y2-LKJ"/>
-                                    <outlet property="delegate" destination="D8e-Qe-BYi" id="fT3-47-XEy"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="MoK-c8-TL7" firstAttribute="bottom" secondItem="NiE-lt-fkM" secondAttribute="bottom" id="HfT-Ag-XQM"/>
-                            <constraint firstItem="MoK-c8-TL7" firstAttribute="trailing" secondItem="NiE-lt-fkM" secondAttribute="trailing" id="Ucr-0D-J6S"/>
-                            <constraint firstItem="MoK-c8-TL7" firstAttribute="top" secondItem="3n8-Ya-5PP" secondAttribute="top" id="yyd-aT-WHA"/>
-                            <constraint firstItem="MoK-c8-TL7" firstAttribute="leading" secondItem="NiE-lt-fkM" secondAttribute="leading" id="zU4-x1-WEC"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="NiE-lt-fkM"/>
-                    </view>
-                    <connections>
-                        <outlet property="filterCollectionView" destination="MoK-c8-TL7" id="CEo-Nb-Eeq"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="apv-xB-mVY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Filter" id="p9X-Og-aOe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="axb-Q0-umY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2260.8695652173915" y="-232.03125"/>
+            <point key="canvasLocation" x="1993" y="-163"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--SuggestionsStoryboard-->
         <scene sceneID="7NN-6W-wQp">
             <objects>
-                <viewControllerPlaceholder id="5Vy-s8-yUS" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SuggestionsStoryboard" id="5Vy-s8-yUS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZd-jG-eWt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3151" y="-245"/>
+            <point key="canvasLocation" x="2074" y="-62"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CFa-ZQ-HKj">
@@ -184,50 +139,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxz-xo-Dg7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="586.95652173913049" y="-111.16071428571428"/>
-        </scene>
-        <!--Suggestions View Controller-->
-        <scene sceneID="DR1-ra-jjd">
-            <objects>
-                <viewController id="tSW-Xn-fED" customClass="SuggestionsViewController" customModule="RecipeTask" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sZe-wD-Yna">
-                        <rect key="frame" x="0.0" y="0.0" width="382" height="163"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ARw-bQ-19X">
-                                <rect key="frame" x="0.0" y="0.0" width="382" height="163"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionCell" rowHeight="47" id="V0f-XY-nAf" customClass="SuggestionsTableViewCell" customModule="RecipeTask" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="382" height="47"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V0f-XY-nAf" id="nfy-kz-r8M">
-                                            <rect key="frame" x="0.0" y="0.0" width="382" height="47"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="tSW-Xn-fED" id="zjm-v3-UoE"/>
-                                    <outlet property="delegate" destination="tSW-Xn-fED" id="5hb-to-tBo"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="ARw-bQ-19X" firstAttribute="trailing" secondItem="cRY-Ng-qbo" secondAttribute="trailing" id="ENw-Ba-vVS"/>
-                            <constraint firstItem="ARw-bQ-19X" firstAttribute="bottom" secondItem="cRY-Ng-qbo" secondAttribute="bottom" id="O2J-FI-cOE"/>
-                            <constraint firstItem="ARw-bQ-19X" firstAttribute="leading" secondItem="cRY-Ng-qbo" secondAttribute="leading" id="OOK-Ee-5hU"/>
-                            <constraint firstItem="ARw-bQ-19X" firstAttribute="top" secondItem="sZe-wD-Yna" secondAttribute="top" id="wUV-9E-txT"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="cRY-Ng-qbo"/>
-                    </view>
-                    <connections>
-                        <outlet property="suggestionTableView" destination="ARw-bQ-19X" id="bhj-Es-000"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CxO-Z3-NkL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2266.666666666667" y="-58.59375"/>
         </scene>
     </scenes>
 </document>
