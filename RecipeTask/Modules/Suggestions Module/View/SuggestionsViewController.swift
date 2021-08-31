@@ -10,10 +10,10 @@ import UIKit
 
 class SuggestionsViewController: UIViewController {
     
-  @IBOutlet weak var suggestionTableView: UITableView!
+    @IBOutlet weak var suggestionTableView: UITableView!
     
-   private var presenter : SuggestionOutput?
-   private var  currentSuggestion : String?{
+    private var presenter : SuggestionOutput?
+    private var  currentSuggestion : String?{
         didSet{
             presenter?.viewSuggestion(suggestion: currentSuggestion ?? "")
         }
@@ -26,7 +26,7 @@ class SuggestionsViewController: UIViewController {
         
         initPresenter()
         presenter?.viewDidLoad()
-
+        
     }
     
     private func initPresenter(){
@@ -34,7 +34,7 @@ class SuggestionsViewController: UIViewController {
     }
     
     private func registerCells(){
-        self.suggestionTableView.register(UINib(nibName: "SuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: "SuggestionCell")
+        self.suggestionTableView.register(UINib(nibName: NibName.SUGGESTIONS_TABLE_VIEW_CELL.rawValue, bundle: nil), forCellReuseIdentifier: Identifiers.SUGGESTION_CELL.rawValue)
         
     }
     
@@ -42,31 +42,31 @@ class SuggestionsViewController: UIViewController {
         currentSuggestion = suggestion
     }
     
- 
+    
 }
 extension SuggestionsViewController: SuggestionInput{
     func initSuggestionsArray(suggestion: String) {
         var suggestionsArray = [String]()
         let defaults = UserDefaults.standard
-        if(defaults.stringArray(forKey: "SavedStringArray")?.count ?? 0 < 10 ){
-            if let array = defaults.stringArray(forKey: "SavedStringArray"){
+        if(defaults.stringArray(forKey: Key.SAVED_STRING_ARRAY.rawValue)?.count ?? 0 < 10 ){
+            if let array = defaults.stringArray(forKey: Key.SAVED_STRING_ARRAY.rawValue){
                 suggestionsArray.append(contentsOf: array)
             }
             suggestionsArray.append(suggestion)
-            defaults.set(suggestionsArray, forKey: "SavedStringArray")
+            defaults.set(suggestionsArray, forKey: Key.SAVED_STRING_ARRAY.rawValue)
             suggestionTableView.reloadData()
             
             
         }
             
         else
-            {
-             if let array = defaults.stringArray(forKey: "SavedStringArray"){
-                           suggestionsArray.append(contentsOf: array)
-                       }
+        {
+            if let array = defaults.stringArray(forKey: Key.SAVED_STRING_ARRAY.rawValue){
+                suggestionsArray.append(contentsOf: array)
+            }
             suggestionsArray.removeFirst()
             suggestionsArray.append(suggestion)
-            defaults.set(suggestionsArray, forKey: "SavedStringArray")
+            defaults.set(suggestionsArray, forKey: Key.SAVED_STRING_ARRAY.rawValue)
             suggestionTableView.reloadData()
         }
     }
@@ -87,14 +87,14 @@ extension SuggestionsViewController: SuggestionInput{
 
 extension SuggestionsViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let suggestionArray = UserDefaults.standard.stringArray(forKey: "SavedStringArray") ?? [String]()
+        let suggestionArray = UserDefaults.standard.stringArray(forKey: Key.SAVED_STRING_ARRAY.rawValue) ?? [String]()
         return suggestionArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SuggestionCell",for: indexPath) as? SuggestionsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.SUGGESTION_CELL.rawValue,for: indexPath) as? SuggestionsTableViewCell
         let defaults = UserDefaults.standard
-        let suggestionArray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
+        let suggestionArray = defaults.stringArray(forKey: Key.SAVED_STRING_ARRAY.rawValue) ?? [String]()
         
         
         let suggestion = suggestionArray[indexPath.row]
@@ -103,7 +103,7 @@ extension SuggestionsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let suggestionArray = UserDefaults.standard.stringArray(forKey: "SavedStringArray") ?? [String]()
+        let suggestionArray = UserDefaults.standard.stringArray(forKey: Key.SAVED_STRING_ARRAY.rawValue) ?? [String]()
         print(suggestionArray[indexPath.row])
         presenter?.didTapSuggestionItem(suggestion:suggestionArray[indexPath.row] )
     }
