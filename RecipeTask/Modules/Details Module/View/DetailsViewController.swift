@@ -22,47 +22,47 @@ class DetailsViewController: UIViewController {
         presenter?.didTapWebsiteButton()
         
     }
-   private var currentRecipe:RecipeModel?{
+    private var currentRecipe:RecipeModel?{
         didSet{
             presenter?.didDataReceived()
         }
     }
     
-   private var presenter : DetailsOutput?
+    private var presenter : DetailsOutput?
     override func viewDidLoad() {
         super.viewDidLoad()
         initPresenter()
         presenter?.viewDidLoad()
-
+        
     }
     
     private func initPresenter(){
-           presenter = DependencyFactory.sharedDependencyFactory.presenterForDetails(self)
-       }
+        presenter = DependencyFactory.sharedDependencyFactory.presenterForDetails(self)
+    }
     
     private func setupShareButton(){
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(named: "share"), style: .plain, target: self, action: #selector(showAvailableSharingOptions))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(named: ImageName.SHARE.rawValue), style: .plain, target: self, action: #selector(showAvailableSharingOptions))
         self.navigationController?.navigationBar.tintColor = UIColor.white;
     }
-   
-  //   MARK: - public method
-   public func setRecipeData(recipe:RecipeModel){
+    
+    //   MARK: - public method
+    public func setRecipeData(recipe:RecipeModel){
         currentRecipe = recipe
     }
     
     @objc func showAvailableSharingOptions() {
-
-           if let link = NSURL(string: currentRecipe?.shareAs ?? "")
-           {
-               let objectToShare = [link]
-               let activityVC = UIActivityViewController(activityItems: objectToShare, applicationActivities: nil)
-               activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
-               self.present(activityVC, animated: true, completion: nil)
-           }
+        
+        if let link = NSURL(string: currentRecipe?.shareAs ?? "")
+        {
+            let objectToShare = [link]
+            let activityVC = UIActivityViewController(activityItems: objectToShare, applicationActivities: nil)
+            activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+            self.present(activityVC, animated: true, completion: nil)
+        }
         
     }
-   
+    
 }
 
 extension DetailsViewController: DetailsInput{
@@ -70,7 +70,7 @@ extension DetailsViewController: DetailsInput{
         if let url = URL(string: currentRecipe?.url ?? "") {
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = true
-
+            
             let vc = SFSafariViewController(url: url, configuration: config)
             present(vc, animated: true)
         }
@@ -80,7 +80,7 @@ extension DetailsViewController: DetailsInput{
         recipeTitleLabel?.text = currentRecipe?.title
         recipeImage.image = UIImage(named: (currentRecipe?.image ?? ""))
         recipeImage.sd_setImage(with: URL(string: currentRecipe?.image ?? ""))
-        recipeIngredientsLabel.text = currentRecipe?.ingredientLines?.joined(separator: "\u{0085}")
+        recipeIngredientsLabel.text = currentRecipe?.ingredientLines?.joined(separator: AppText.SEPARATOR.rawValue)
         setupShareButton()
         
     }

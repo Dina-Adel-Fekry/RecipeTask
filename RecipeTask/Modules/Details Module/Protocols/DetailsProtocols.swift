@@ -17,7 +17,7 @@ protocol DetailsInput: class {
 
 
 protocol DetailsOutput: class {
-   
+    
     func viewDidLoad()
     func didDataReceived()
     func didTapWebsiteButton()
