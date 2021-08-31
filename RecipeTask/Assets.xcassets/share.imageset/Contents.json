@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "share.png",
+      "filename" : "icons8-share-rounded-96.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "share-1.png",
+      "filename" : "icons8-share-rounded-97.png",
       "scale" : "2x"
     },
     {

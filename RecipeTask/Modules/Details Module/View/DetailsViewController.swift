@@ -54,7 +54,7 @@ class DetailsViewController: UIViewController {
     
     private func setupShareButton(){
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(named: "1856157"), style: .plain, target: self, action: #selector(showAvailableSharingOptions))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(named: "share"), style: .plain, target: self, action: #selector(showAvailableSharingOptions))
         self.navigationController?.navigationBar.tintColor = UIColor.white;
     }
    
