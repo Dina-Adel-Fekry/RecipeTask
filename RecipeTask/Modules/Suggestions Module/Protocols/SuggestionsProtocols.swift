@@ -12,11 +12,12 @@ import UIKit
 protocol SuggestionInput: class {
     func initSuggestionsArray(suggestion: String)
     func setup()
+    func updateView(suggestion: String)
 }
 
 
 protocol SuggestionOutput: class {
-    func didTapSuggestionItem()
+    func didTapSuggestionItem(suggestion: String)
     func viewDidLoad()
     func viewSuggestion(suggestion: String)
     

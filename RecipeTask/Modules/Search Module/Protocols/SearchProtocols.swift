@@ -17,6 +17,7 @@ protocol SearchInput: class {
     func initRecipeArray(recipesArray:[RecipeModel],from: Int, count: Int,nextUrl: String)
     func setup()
     func setHiddenViews()
+    func setSearchBarText(suggestion: String)
     
 }
 
@@ -28,5 +29,6 @@ protocol SearchOutput: class {
     func viewDidLoad()
     func didNeedMoreData(request:String)
     func navigateToDetails(recipe: RecipeModel)
+    func didChooseSuggestion(suggestion: String)
     
 }

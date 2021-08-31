@@ -92,6 +92,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Recipes Search" id="5DR-0y-pty"/>
                     <connections>
+                        <outlet property="FilterView" destination="t3h-ds-6Uw" id="p8b-bf-I2w"/>
                         <outlet property="noSearchLabel" destination="9Zx-cd-7fU" id="bof-4T-5qv"/>
                         <outlet property="recipesTableView" destination="Qx3-iu-ydp" id="ARs-kj-Uqo"/>
                         <outlet property="searchBar" destination="2u6-Yb-1PN" id="O2F-Om-qSD"/>
@@ -153,6 +154,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apv-xB-mVY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2260.8695652173915" y="-232.03125"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="7NN-6W-wQp">
+            <objects>
+                <viewControllerPlaceholder id="5Vy-s8-yUS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZd-jG-eWt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3151" y="-245"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CFa-ZQ-HKj">

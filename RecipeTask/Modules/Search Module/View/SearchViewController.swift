@@ -15,6 +15,8 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var recipesTableView: UITableView!
     @IBOutlet weak var noSearchLabel: UILabel!
     @IBOutlet weak var suggestionsView: UIView!
+    @IBOutlet weak var FilterView: UIView!
+    
     
     var recipeArray  = [RecipeModel]()
     var fromIndex : Int?
@@ -23,8 +25,6 @@ class SearchViewController: UIViewController{
     var response = [[String:Any]]()
     private var  currentFilter : String?{
         didSet{
-            //filter,search
-            //Network
             if (currentFilter == "all"){
                 presenter?.didTapSearchBar(searchBarInput: searchBar?.text ?? "meat")
             }
@@ -34,10 +34,16 @@ class SearchViewController: UIViewController{
         }
     }
     
-    enum Segues{
-        static let toFilterView = "toFilterCollectionView"
-        static let toSuggestionsView = "toSuggestionsView"
+    private var currentSuggestion: String?{
+        didSet{
+        presenter?.didChooseSuggestion(suggestion: currentSuggestion ?? "")
+        }
     }
+    
+//    enum Segues{
+//        static let toFilterView = "toFilterCollectionView"
+//        static let toSuggestionsView = "toSuggestionsView"
+//    }
     var presenter : SearchOutput?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +59,9 @@ class SearchViewController: UIViewController{
     
     // MARK: - private methods
     private func initPresenter(){
-        presenter = SearchPresenter(view: self,interactor:SearchInteractor(), router: SearchRouter())
+        
+        presenter = DependencyFactory().presenterForSearch(self)
+        
     }
     
     
@@ -78,18 +86,21 @@ class SearchViewController: UIViewController{
     func setCurrentFilter(filter: String){
         currentFilter = filter
     }
+    func setCurrentSuggestion(suggestion: String){
+        currentSuggestion = suggestion
+    }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           if segue.identifier == Segues.toFilterView{
-               let destVC = segue.destination as! FilterViewController
-            
-           }
-          if segue.identifier == Segues.toSuggestionsView{
-                      let destVC = segue.destination as! SuggestionsViewController
-                   
-                  }       }
-    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//           if segue.identifier == Segues.toFilterView{
+//               let destVC = segue.destination as! FilterViewController
+//
+//           }
+//          if segue.identifier == Segues.toSuggestionsView{
+//                      let destVC = segue.destination as! SuggestionsViewController
+//
+//                  }       }
+//
     
    
     
@@ -102,7 +113,6 @@ class SearchViewController: UIViewController{
 
 
 extension SearchViewController: SearchInput{
- 
     func reloadData() {
         recipesTableView.reloadData()
     }
@@ -148,6 +158,10 @@ extension SearchViewController: SearchInput{
         suggestionsView?.isHidden = true
         
     }
+    func setSearchBarText(suggestion: String) {
+        searchBar.text = suggestion
+        suggestionsView.isHidden = true
+    }
 
 }
 
@@ -161,10 +175,10 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
       }
 
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          var cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell",for: indexPath) as! RecipeTableViewCell
+          var cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell",for: indexPath) as? RecipeTableViewCell
           let recipe = recipeArray[indexPath.row]
-        cell.setupCell(title: recipe.title, image: recipe.image, source: recipe.source, health: recipe.healthLabels)
-        cell.recipeImage.sd_setImage(with: URL(string: recipe.image!))
+        cell?.setupCell(title: recipe.title, image: recipe.image, source: recipe.source, health: recipe.healthLabels)
+        cell?.recipeImage.sd_setImage(with: URL(string: recipe.image!))
         if indexPath.row == recipeArray.count - 1 { // last cell
             if countNumber ?? 20 > recipeArray.count { // more items to fetch
                 presenter?.didNeedMoreData(request:nextUrl ?? "")
@@ -172,7 +186,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
 
-          return cell
+        return cell ?? UITableViewCell()
       }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -182,12 +196,12 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
          //self.navigationController?.pushViewController(detailsViewController, animated: true)
         print(recipeArray[indexPath.row].title)
         presenter?.navigateToDetails(recipe: recipeArray[indexPath.row])
-        
+        //TODO: - presenter?.didSelectRoeAt(indexPath.row)
     }
 
    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
         return 160
+    //RecipeRowHeight
     }
 }
 
@@ -198,7 +212,7 @@ extension SearchViewController: UISearchBarDelegate{
         print("searchText \(searchText)")
         suggestionsView.isHidden = false
         
-       
+       // presenter
         
     }
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -225,7 +239,6 @@ extension SearchViewController: UISearchBarDelegate{
             let regex = try NSRegularExpression(pattern: ".*[^A-Za-z \n].*", options: [])
            if regex.firstMatch(in: text, options: [], range: NSMakeRange(0, text.count)) != nil {
                  return false
-
             }
         }
        catch {

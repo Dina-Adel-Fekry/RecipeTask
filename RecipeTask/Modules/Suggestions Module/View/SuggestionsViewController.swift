@@ -89,6 +89,13 @@ extension SuggestionsViewController: SuggestionInput{
         suggestionTableView.reloadData()
     }
     
+    func updateView(suggestion: String){
+        if let parent = self.parent as? SearchViewController {
+            parent.setCurrentSuggestion(suggestion: suggestion)
+        }
+        
+    }
+    
 }
 
 extension SuggestionsViewController: UITableViewDelegate,UITableViewDataSource{
@@ -109,7 +116,9 @@ extension SuggestionsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // print(suggestionsArray[indexPath.row])
+        let suggestionArray = UserDefaults.standard.stringArray(forKey: "SavedStringArray") ?? [String]()
+        print(suggestionArray[indexPath.row])
+        presenter?.didTapSuggestionItem(suggestion:suggestionArray[indexPath.row] )
     }
     
     

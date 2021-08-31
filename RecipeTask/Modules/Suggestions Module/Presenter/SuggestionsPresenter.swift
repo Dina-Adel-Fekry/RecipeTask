@@ -33,8 +33,8 @@ extension SuggestionsPresenter : SuggestionOutput{
     }
     
   
-    func didTapSuggestionItem() {
-        
+    func didTapSuggestionItem(suggestion: String) {
+        view?.updateView(suggestion:suggestion)
     }
     
     func viewDidLoad() {
