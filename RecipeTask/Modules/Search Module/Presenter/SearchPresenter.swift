@@ -138,6 +138,10 @@ extension SearchPresenter : SearchOutput{
     func didNeedMoreData(request:String){
         fetchMoreData(request:request)
     }
+    func navigateToDetails(recipe: RecipeModel) {
+        router?.transferData(recipe:recipe)
+    }
+    
 }
 
 

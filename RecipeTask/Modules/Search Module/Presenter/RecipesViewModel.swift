@@ -31,10 +31,16 @@ class RecipeModel{
     var image: String?
     var source: String?
     var healthLabels: [String]?
+    var url: String?
+    var shareAs: String?
+    var ingredientLines: [String]?
     init(hitsData: HitsData) {
         self.title = hitsData.recipe.label
         self.image = hitsData.recipe.image
         self.source = hitsData.recipe.source
         self.healthLabels = hitsData.recipe.healthLabels
+        self.url = hitsData.recipe.url
+        self.shareAs = hitsData.recipe.shareAs
+        self.ingredientLines = hitsData.recipe.ingredientLines
     }
 }

@@ -16,51 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqC-M7-qVI">
-                                <rect key="frame" x="0.0" y="34" width="414" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="yQu-Al-DQv"/>
-                                    <constraint firstAttribute="height" constant="44" id="yge-ug-GlC"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.50967406380000002" green="0.15135334489999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Recipes Details" id="xcg-Bg-RsG">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" id="q2E-j5-pHI">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <action selector="backButtonAction:" destination="T6Z-vZ-VhT" id="IoO-43-5MA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="square.and.arrow.up" catalog="system" id="rgb-IY-Dd7">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <action selector="shareRecipeAction:" destination="T6Z-vZ-VhT" id="PxR-2p-CnY"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U98-ja-NpU">
                                 <rect key="frame" x="20" y="200" width="374" height="218"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="2sV-We-UR0"/>
-                                    <constraint firstAttribute="height" constant="218" id="L91-gq-5Fa"/>
-                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEJ-iq-A5t">
-                                <rect key="frame" x="58" y="92" width="299" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="dN1-JS-gcg"/>
-                                    <constraint firstAttribute="width" constant="299" id="jSn-QD-2zX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6K-XU-sdg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6K-XU-sdg">
                                 <rect key="frame" x="20" y="438" width="374" height="309"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="IYs-ey-JuD"/>
@@ -85,18 +44,27 @@
                                     <action selector="recipeWebsiteAction:" destination="T6Z-vZ-VhT" eventType="touchUpInside" id="Wbp-1X-9xD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEJ-iq-A5t">
+                                <rect key="frame" x="58" y="73" width="299" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="dN1-JS-gcg"/>
+                                    <constraint firstAttribute="width" constant="299" id="jSn-QD-2zX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="aqC-M7-qVI" firstAttribute="leading" secondItem="Srk-kU-C4I" secondAttribute="leading" id="4OL-Cr-c8X"/>
-                            <constraint firstItem="U98-ja-NpU" firstAttribute="top" secondItem="lEJ-iq-A5t" secondAttribute="bottom" constant="8" id="Cja-Tb-Lp9"/>
+                            <constraint firstItem="U98-ja-NpU" firstAttribute="top" secondItem="lEJ-iq-A5t" secondAttribute="bottom" constant="27" id="Cja-Tb-Lp9"/>
                             <constraint firstItem="U98-ja-NpU" firstAttribute="leading" secondItem="Srk-kU-C4I" secondAttribute="leading" constant="20" id="DVn-LI-uWw"/>
+                            <constraint firstItem="Srk-kU-C4I" firstAttribute="trailing" secondItem="U98-ja-NpU" secondAttribute="trailing" constant="20" id="I7M-3g-ISA"/>
                             <constraint firstItem="ChZ-Zi-3TR" firstAttribute="top" secondItem="A6K-XU-sdg" secondAttribute="bottom" constant="30" id="MZt-PR-8ec"/>
-                            <constraint firstItem="lEJ-iq-A5t" firstAttribute="top" secondItem="aqC-M7-qVI" secondAttribute="bottom" constant="14" id="Mnw-J1-dy3"/>
                             <constraint firstItem="A6K-XU-sdg" firstAttribute="leading" secondItem="Srk-kU-C4I" secondAttribute="leading" constant="20" id="OCw-jU-s5f"/>
+                            <constraint firstItem="lEJ-iq-A5t" firstAttribute="top" secondItem="Srk-kU-C4I" secondAttribute="top" constant="29" id="Vxv-w9-4RI"/>
                             <constraint firstItem="A6K-XU-sdg" firstAttribute="top" secondItem="U98-ja-NpU" secondAttribute="bottom" constant="20" id="XrU-2J-6M4"/>
-                            <constraint firstItem="aqC-M7-qVI" firstAttribute="top" secondItem="qtu-6m-m3R" secondAttribute="top" constant="34" id="hR4-uD-ijt"/>
-                            <constraint firstItem="aqC-M7-qVI" firstAttribute="trailing" secondItem="Srk-kU-C4I" secondAttribute="trailing" id="qyx-yW-of8"/>
+                            <constraint firstItem="Srk-kU-C4I" firstAttribute="bottom" secondItem="ChZ-Zi-3TR" secondAttribute="bottom" constant="38" id="a7r-Mi-8bj"/>
                             <constraint firstItem="lEJ-iq-A5t" firstAttribute="leading" secondItem="Srk-kU-C4I" secondAttribute="leading" constant="58" id="w14-ft-wVh"/>
                             <constraint firstItem="ChZ-Zi-3TR" firstAttribute="leading" secondItem="Srk-kU-C4I" secondAttribute="leading" constant="99" id="y7o-oj-zUm"/>
                         </constraints>
@@ -113,8 +81,4 @@
             <point key="canvasLocation" x="179.71014492753625" y="-80.357142857142847"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="chevron.left" catalog="system" width="48" height="64"/>
-        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
-    </resources>
 </document>

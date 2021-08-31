@@ -58,7 +58,9 @@ class SearchViewController: UIViewController{
     
     
     private func registerCells(){
-        self.recipesTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")    }
+        self.recipesTableView?.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
+        
+    }
     
 
     /*
@@ -141,9 +143,9 @@ extension SearchViewController: SearchInput{
     }
     
     func setHiddenViews() {
-        noSearchLabel.isHidden = false
-        recipesTableView.isHidden = true
-        suggestionsView.isHidden = true
+        noSearchLabel?.isHidden = false
+        recipesTableView?.isHidden = true
+        suggestionsView?.isHidden = true
         
     }
 
@@ -178,6 +180,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 //         let detailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
 //        self.present(detailsViewController, animated: true, completion: nil)
          //self.navigationController?.pushViewController(detailsViewController, animated: true)
+        print(recipeArray[indexPath.row].title)
+        presenter?.navigateToDetails(recipe: recipeArray[indexPath.row])
+        
     }
 
    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

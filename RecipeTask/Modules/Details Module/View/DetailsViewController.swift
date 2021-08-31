@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SDWebImage
+import SafariServices
+
 
 
 class DetailsViewController: UIViewController {
@@ -16,10 +19,12 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var recipeIngredientsLabel: UILabel!
     
     @IBAction func recipeWebsiteAction(_ sender: Any) {
+        presenter?.didTapWebsiteButton()
+        
     }
     
     @IBAction func shareRecipeAction(_ sender: Any) {
-        
+        presenter?.didTapShareButton()
     }
     
     
@@ -28,15 +33,35 @@ class DetailsViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    var currentRecipe:RecipeModel?{
+        didSet{
+            presenter?.didDataReceived()
+        }
+    }
     
+    var presenter : DetailsOutput?
     override func viewDidLoad() {
         super.viewDidLoad()
+        initPresenter()
+        presenter?.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-   
     
-
+    private func initPresenter(){
+           presenter = DetailsPresenter(view:self,interactor:DetailsInteractor(), router: DetailsRouter())
+       }
+    
+    private func setupShareButton(){
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(named: "1856157"), style: .plain, target: self, action: #selector(showAvailableSharingOptions))
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
+    }
+   
+  //   MARK: - public method
+   public func setRecipeData(recipe:RecipeModel){
+        currentRecipe = recipe
+    }
     /*
     // MARK: - Navigation
 
@@ -47,4 +72,37 @@ class DetailsViewController: UIViewController {
     }
     */
 
+}
+
+extension DetailsViewController: DetailsInput{
+    func showRecipeWebsitePage() {
+        if let url = URL(string: currentRecipe?.url ?? "") {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
+        }
+        
+    }
+    
+    @objc func showAvailableSharingOptions() {
+
+        if let link = NSURL(string: currentRecipe?.shareAs ?? "")
+        {
+            let objectToShare = [link]
+            let activityVC = UIActivityViewController(activityItems: objectToShare, applicationActivities: nil)
+            activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+            self.present(activityVC, animated: true, completion: nil)
+        }    }
+    
+    func setup() {
+        recipeTitleLabel?.text = currentRecipe?.title
+        recipeImage.image = UIImage(named: (currentRecipe?.image ?? ""))
+        recipeImage.sd_setImage(with: URL(string: currentRecipe?.image ?? ""))
+        recipeIngredientsLabel.text = currentRecipe?.ingredientLines?.joined(separator: "\u{0085}")
+        setupShareButton()
+        
+    }
+    
 }

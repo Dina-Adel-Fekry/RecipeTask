@@ -26,6 +26,7 @@ protocol SearchOutput: class {
     func didTapSearchBar(searchBarInput: String)
     func didTapFilterCell(searchBarInput: String, filterType: String)
     func viewDidLoad()
-     func didNeedMoreData(request:String)
+    func didNeedMoreData(request:String)
+    func navigateToDetails(recipe: RecipeModel)
     
 }

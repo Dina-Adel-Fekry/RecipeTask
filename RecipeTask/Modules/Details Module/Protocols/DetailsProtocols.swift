@@ -7,3 +7,19 @@
 //
 
 import Foundation
+import UIKit
+
+protocol DetailsInput: class {
+    func setup()
+    func showRecipeWebsitePage()
+    func showAvailableSharingOptions()
+}
+
+
+protocol DetailsOutput: class {
+   
+    func viewDidLoad()
+    func didDataReceived()
+    func didTapWebsiteButton()
+    func didTapShareButton()
+}
