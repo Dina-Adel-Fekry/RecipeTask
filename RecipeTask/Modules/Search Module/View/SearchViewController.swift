@@ -40,10 +40,6 @@ class SearchViewController: UIViewController{
         }
     }
     
-//    enum Segues{
-//        static let toFilterView = "toFilterCollectionView"
-//        static let toSuggestionsView = "toSuggestionsView"
-//    }
     var presenter : SearchOutput?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +56,7 @@ class SearchViewController: UIViewController{
     // MARK: - private methods
     private func initPresenter(){
         
-        presenter = DependencyFactory().presenterForSearch(self)
+        presenter = DependencyFactory.sharedDependencyFactory.presenterForSearch(self)
         
     }
     
@@ -89,23 +85,6 @@ class SearchViewController: UIViewController{
     func setCurrentSuggestion(suggestion: String){
         currentSuggestion = suggestion
     }
-    
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//           if segue.identifier == Segues.toFilterView{
-//               let destVC = segue.destination as! FilterViewController
-//
-//           }
-//          if segue.identifier == Segues.toSuggestionsView{
-//                      let destVC = segue.destination as! SuggestionsViewController
-//
-//                  }       }
-//
-    
-   
-    
-    
-           
     
     }
 
@@ -178,7 +157,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
           var cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell",for: indexPath) as? RecipeTableViewCell
           let recipe = recipeArray[indexPath.row]
         cell?.setupCell(title: recipe.title, image: recipe.image, source: recipe.source, health: recipe.healthLabels)
-        cell?.recipeImage.sd_setImage(with: URL(string: recipe.image!))
         if indexPath.row == recipeArray.count - 1 { // last cell
             if countNumber ?? 20 > recipeArray.count { // more items to fetch
                 presenter?.didNeedMoreData(request:nextUrl ?? "")
@@ -191,9 +169,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-//         let detailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-//        self.present(detailsViewController, animated: true, completion: nil)
-         //self.navigationController?.pushViewController(detailsViewController, animated: true)
         print(recipeArray[indexPath.row].title)
         presenter?.navigateToDetails(recipe: recipeArray[indexPath.row])
         //TODO: - presenter?.didSelectRoeAt(indexPath.row)

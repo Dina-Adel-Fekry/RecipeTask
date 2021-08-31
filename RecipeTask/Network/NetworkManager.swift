@@ -9,42 +9,37 @@ import Foundation
 import Alamofire
 
 class NetworkManager {
-   // var searchBarText: String?
-    
-    func fetchData(body:[String:String?],completionHandler: @escaping (Any?)-> Void){
-                
-            var request = "https://api.edamam.com/api/recipes/v2?&app_id=8b456bdf&app_key=473b2f968e4aa88550ee5b5a07e6cfac&type=public"
-        
-        for param in body{
-            if let value = param.value{
-                request.append("&\(param.key)=\(value)")
-            }
+    static let sharedNetworkManager = NetworkManager()
+    func fetch(requestSpecs: RequestSpecs, completionHandler: @escaping (Any?)-> Void){
+        var request = requestSpecs.url
+        if let parameters = requestSpecs.parameters{
+            request = getFullRequest(parameters: parameters, url: request)
         }
         AF.request(request).validate().responseDecodable(of: SearchApiModel.self) { (response) in
-                
-                completionHandler(response.value)
-
-
-
             
-            
-//       // print(value._links.next.href)
-//      //  print(value.hits[5].recipe.label)
-//
-//                }
-       }
-
+            completionHandler(response.value)
+        }
     }
     
-    func fetchMoreData(request: String,completionHandler: @escaping (Any?)-> Void){
-        AF.request(request).validate().responseDecodable(of: SearchApiModel.self) { (response) in
-                        
-                        completionHandler(response.value)
-               
-               }
+   private func getFullRequest(parameters:[String:String?],url: String)-> String{
+        var request = url
+         for param in parameters{
+                       if let value = param.value{
+                           request.append("&\(param.key)=\(value)")
+                       }
+                   }
+        return request
     }
     
+    
+}
 
+struct RequestSpecs{
+    var url: String
+    var parameters: [String:String?]?
+    
+    init(url: String,parameters: [String:String?]? = nil) {
+        self.url = url
+        self.parameters = parameters
     }
-
-
+}

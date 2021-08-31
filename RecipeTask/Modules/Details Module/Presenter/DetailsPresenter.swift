@@ -26,10 +26,6 @@ extension DetailsPresenter : DetailsOutput{
         view?.showRecipeWebsitePage()
     }
     
-    func didTapShareButton() {
-        view?.showAvailableSharingOptions()
-    }
-    
     func viewDidLoad() {
         view?.setup()
         

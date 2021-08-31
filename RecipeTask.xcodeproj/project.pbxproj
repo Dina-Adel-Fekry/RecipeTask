@@ -21,6 +21,7 @@
 		692F493626DCE0B5005026E6 /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692F492E26DCE0B5005026E6 /* DetailsInteractor.swift */; };
 		692F493726DCE0B5005026E6 /* DetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692F493126DCE0B5005026E6 /* DetailsRouter.swift */; };
 		692F493A26DD28B6005026E6 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692F493926DD28B6005026E6 /* UIApplication+Extension.swift */; };
+		692F493C26DE531D005026E6 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692F493B26DE531D005026E6 /* DependencyFactory.swift */; };
 		693CBAE426D45B07009EB773 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693CBAE326D45B07009EB773 /* NetworkManager.swift */; };
 		693CBAEC26D46286009EB773 /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693CBAEB26D46286009EB773 /* FilterPresenter.swift */; };
 		693CBAEE26D4629C009EB773 /* FilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693CBAED26D4629C009EB773 /* FilterRouter.swift */; };
@@ -83,6 +84,7 @@
 		692F492E26DCE0B5005026E6 /* DetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
 		692F493126DCE0B5005026E6 /* DetailsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsRouter.swift; sourceTree = "<group>"; };
 		692F493926DD28B6005026E6 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		692F493B26DE531D005026E6 /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
 		693CBAE326D45B07009EB773 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		693CBAEB26D46286009EB773 /* FilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
 		693CBAED26D4629C009EB773 /* FilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRouter.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			children = (
 				692F493826DD2861005026E6 /* Extensions */,
 				69A3EEAA26D276A80024D1CF /* Constants */,
+				692F493B26DE531D005026E6 /* DependencyFactory.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				69632A6D26D3BB6200371CF4 /* SearchProtocols.swift in Sources */,
 				692F491B26DC2BCE005026E6 /* SuggestionsPresenter.swift in Sources */,
 				69632A6926D3B7D500371CF4 /* SearchInteractor.swift in Sources */,
+				692F493C26DE531D005026E6 /* DependencyFactory.swift in Sources */,
 				692F491F26DC2BFA005026E6 /* SuggestionsInteractor.swift in Sources */,
 				693CBAF026D462B6009EB773 /* FilterInteractor.swift in Sources */,
 				693CBAEC26D46286009EB773 /* FilterPresenter.swift in Sources */,

@@ -34,7 +34,7 @@ class SuggestionsViewController: UIViewController {
     }
     
     private func initPresenter(){
-        presenter = SuggestionsPresenter(view: self,interactor:SuggestionsInteractor(), router: SuggestionsRouter())
+        presenter = DependencyFactory.sharedDependencyFactory.presenterForSuggestions(self)
     }
     
     private func registerCells(){
@@ -105,14 +105,14 @@ extension SuggestionsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SuggestionCell",for: indexPath) as! SuggestionsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SuggestionCell",for: indexPath) as? SuggestionsTableViewCell
         let defaults = UserDefaults.standard
         let suggestionArray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
         
         
         let suggestion = suggestionArray[indexPath.row]
-        cell.setupCell(suggestion: suggestion)
-        return cell
+        cell?.setupCell(suggestion: suggestion)
+        return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

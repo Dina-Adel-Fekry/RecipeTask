@@ -22,17 +22,6 @@ class DetailsViewController: UIViewController {
         presenter?.didTapWebsiteButton()
         
     }
-    
-    @IBAction func shareRecipeAction(_ sender: Any) {
-        presenter?.didTapShareButton()
-    }
-    
-    
-    @IBAction func backButtonAction(_ sender: Any) {
-       // self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     var currentRecipe:RecipeModel?{
         didSet{
             presenter?.didDataReceived()
@@ -49,7 +38,7 @@ class DetailsViewController: UIViewController {
     }
     
     private func initPresenter(){
-           presenter = DetailsPresenter(view:self,interactor:DetailsInteractor(), router: DetailsRouter())
+           presenter = DependencyFactory.sharedDependencyFactory.presenterForDetails(self)
        }
     
     private func setupShareButton(){
@@ -62,6 +51,16 @@ class DetailsViewController: UIViewController {
    public func setRecipeData(recipe:RecipeModel){
         currentRecipe = recipe
     }
+    
+    @objc func showAvailableSharingOptions() {
+
+           if let link = NSURL(string: currentRecipe?.shareAs ?? "")
+           {
+               let objectToShare = [link]
+               let activityVC = UIActivityViewController(activityItems: objectToShare, applicationActivities: nil)
+               activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+               self.present(activityVC, animated: true, completion: nil)
+           }    }
     /*
     // MARK: - Navigation
 
@@ -85,17 +84,6 @@ extension DetailsViewController: DetailsInput{
         }
         
     }
-    
-    @objc func showAvailableSharingOptions() {
-
-        if let link = NSURL(string: currentRecipe?.shareAs ?? "")
-        {
-            let objectToShare = [link]
-            let activityVC = UIActivityViewController(activityItems: objectToShare, applicationActivities: nil)
-            activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
-            self.present(activityVC, animated: true, completion: nil)
-        }    }
-    
     func setup() {
         recipeTitleLabel?.text = currentRecipe?.title
         recipeImage.image = UIImage(named: (currentRecipe?.image ?? ""))

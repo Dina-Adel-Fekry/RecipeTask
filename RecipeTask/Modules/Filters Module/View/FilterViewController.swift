@@ -29,7 +29,7 @@ class FilterViewController: UIViewController{
     
     // MARK: - private methods
     private func initPresenter(){
-        presenter = FilterPresenter(view: self,interactor:FilterInteractor(), router: FilterRouter())
+        presenter = DependencyFactory.sharedDependencyFactory.presenterForFilter(self)
     }
     
     
@@ -74,10 +74,10 @@ extension FilterViewController: UICollectionViewDataSource,UICollectionViewDeleg
      }
      
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FilterCollectionViewCell
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FilterCollectionViewCell
          let health = items[indexPath.row]
-         cell.setupCell(healthName: health)
-                return cell
+         cell?.setupCell(healthName: health)
+        return cell ?? UICollectionViewCell()
      }
      
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

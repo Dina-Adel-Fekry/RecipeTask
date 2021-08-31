@@ -23,7 +23,8 @@ class RecipeTableViewCell: UITableViewCell {
     func setupCell(title : String? ,image:String?,source : String?, health : [String]?){
         recipeTitle.text = title
         recipeSource.text = source
-        recipeImage.image = UIImage(named: (image)!)
+        recipeImage.image = UIImage(named: (image ?? ""))
+        recipeImage.sd_setImage(with: URL(string: image ?? ""))
         recipeHelthLabels.text = health?.joined(separator: ",")
             
     }

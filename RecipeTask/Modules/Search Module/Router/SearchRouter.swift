@@ -11,7 +11,7 @@ import UIKit
 
 class SearchRouter {
   
-    func transferData(recipe:RecipeModel){
+    func showDetails(recipe:RecipeModel){
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "SearchStoryBoard", bundle:nil)
 //        let searchViewController = storyBoard.instantiateInitialViewController(withIdentifier: "SearchViewController")
         if let searchViewController = UIApplication.topViewController() as? SearchViewController{

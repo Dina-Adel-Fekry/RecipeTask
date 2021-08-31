@@ -52,30 +52,6 @@ extension FilterPresenter : FilterOutput{
         }
         //presenter -> view of filter -> set search
         self.view?.updateView(filterType:filterType ?? "low-sugar")
-//        interactor?.fetchRecipeDataFiltered(completionHandler: { (value) in
-//            if let response = value as? SearchApiModel {
-//                  let recipesViewModel = RecipesViewModel(searchApiModel: response)
-//
-//
-//
-//                  self.searchView?.initRecipeArray(recipesArray: recipesViewModel.recipes)
-//                  if(recipesViewModel.recipes.isEmpty){
-//                      self.searchView?.showError()
-//                  }
-//                  else{
-//                  self.searchView?.updateView()
-//
-//
-//                  }
-//                  self.searchView?.reloadData()
-//              }
-//              else{
-//                  self.searchView?.showError()
-//                  self.searchView?.reloadData()
-//              }
-//
-//
-//        }, filterType: filterType ?? "low-sugar",searchBarInput: searchInputText!)
     }
     
    
