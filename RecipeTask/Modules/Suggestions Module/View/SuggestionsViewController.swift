@@ -11,7 +11,6 @@ import UIKit
 class SuggestionsViewController: UIViewController {
     
     @IBOutlet weak var suggestionTableView: UITableView!
-    private var suggestionsArray = [String]()
     
     private var presenter : SuggestionOutput?
     private var  currentSuggestion : String?{
@@ -47,30 +46,33 @@ class SuggestionsViewController: UIViewController {
 }
 extension SuggestionsViewController: SuggestionInput{
     func initSuggestionsArray(suggestion: String) {
-        if(UserDefaults.standard.stringArray(forKey: Key.SAVED_STRING_ARRAY.rawValue)?.count ?? 0 < 10 ){
-            handleSuggestionsBeforeLimit(suggestion: suggestion)
+        var suggestionsArray = [String]()
+        if(UserDefaultsManager.get()?.count ?? 0 < 10 )
+        {
+            handleSuggestionsBeforeLimit(suggestion: suggestion, suggestionsArray:&suggestionsArray)
         }
         else
         {
-            handleSuggestionsAtLimit(suggestion: suggestion)
+            handleSuggestionsAtLimit(suggestion: suggestion,suggestionsArray: &suggestionsArray)
         }
     }
-    
-    private func handleSuggestionsBeforeLimit(suggestion: String){
+     
+    private func handleSuggestionsBeforeLimit(suggestion: String,suggestionsArray: inout [String]){
         if let array = UserDefaults.standard.stringArray(forKey: Key.SAVED_STRING_ARRAY.rawValue){
             suggestionsArray.append(contentsOf: array)
         }
         suggestionsArray.append(suggestion)
         UserDefaults.standard.set(suggestionsArray, forKey: Key.SAVED_STRING_ARRAY.rawValue)
-        
+
     }
-    private func handleSuggestionsAtLimit(suggestion: String){
+    private func handleSuggestionsAtLimit(suggestion: String, suggestionsArray: inout [String]){
         if let array = UserDefaults.standard.stringArray(forKey: Key.SAVED_STRING_ARRAY.rawValue){
             suggestionsArray.append(contentsOf: array)
         }
         suggestionsArray.removeFirst()
         suggestionsArray.append(suggestion)
-        UserDefaults.standard.set(suggestionsArray, forKey: Key.SAVED_STRING_ARRAY.rawValue)    }
+        UserDefaults.standard.set(suggestionsArray, forKey: Key.SAVED_STRING_ARRAY.rawValue)
+        }
     
     
     func reloadData(){
