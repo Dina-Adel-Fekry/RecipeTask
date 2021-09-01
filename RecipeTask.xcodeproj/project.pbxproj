@@ -43,7 +43,6 @@
 		69632A7326D3CCE700371CF4 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69632A7226D3CCE700371CF4 /* RecipeTableViewCell.swift */; };
 		69632A7526D3E07500371CF4 /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69632A7426D3E07500371CF4 /* RecipeTableViewCell.xib */; };
 		69A3EE7726D265D50024D1CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EE7626D265D50024D1CF /* AppDelegate.swift */; };
-		69A3EE7926D265D50024D1CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EE7826D265D50024D1CF /* SceneDelegate.swift */; };
 		69A3EE7B26D265D50024D1CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EE7A26D265D50024D1CF /* ViewController.swift */; };
 		69A3EE7E26D265D50024D1CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69A3EE7C26D265D50024D1CF /* Main.storyboard */; };
 		69A3EE8026D265DA0024D1CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69A3EE7F26D265DA0024D1CF /* Assets.xcassets */; };
@@ -112,7 +111,6 @@
 		69632A7426D3E07500371CF4 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeTableViewCell.xib; sourceTree = "<group>"; };
 		69A3EE7326D265D50024D1CF /* RecipeTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A3EE7626D265D50024D1CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		69A3EE7826D265D50024D1CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		69A3EE7A26D265D50024D1CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		69A3EE7D26D265D50024D1CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		69A3EE7F26D265DA0024D1CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -420,7 +418,6 @@
 				69632A6426D3B71400371CF4 /* Utils */,
 				69632A6326D3B6EF00371CF4 /* Modules */,
 				69A3EE7626D265D50024D1CF /* AppDelegate.swift */,
-				69A3EE7826D265D50024D1CF /* SceneDelegate.swift */,
 				69A3EE7A26D265D50024D1CF /* ViewController.swift */,
 				69A3EE7C26D265D50024D1CF /* Main.storyboard */,
 				69A3EE7F26D265DA0024D1CF /* Assets.xcassets */,
@@ -755,7 +752,6 @@
 				692C367F26DE818F00F7255F /* Constants.swift in Sources */,
 				692F493526DCE0B5005026E6 /* DetailsProtocols.swift in Sources */,
 				69632A6B26D3BB4C00371CF4 /* SearchRouter.swift in Sources */,
-				69A3EE7926D265D50024D1CF /* SceneDelegate.swift in Sources */,
 				692F491926DC2AAC005026E6 /* SuggestionsProtocols.swift in Sources */,
 				692F491D26DC2BE3005026E6 /* SuggestionsRouter.swift in Sources */,
 				692F491326DBEC0C005026E6 /* SuggestionsTableViewCell.swift in Sources */,

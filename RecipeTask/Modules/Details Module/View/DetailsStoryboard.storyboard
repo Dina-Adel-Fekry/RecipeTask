@@ -17,9 +17,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6K-XU-sdg">
-                                <rect key="frame" x="20" y="345" width="374" height="402"/>
+                                <rect key="frame" x="12" y="345" width="390" height="402"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="IYs-ey-JuD"/>
                                     <constraint firstAttribute="height" constant="402" id="bIL-Lu-NMM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -62,14 +61,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="U98-ja-NpU" firstAttribute="top" secondItem="lEJ-iq-A5t" secondAttribute="bottom" constant="8" id="Cja-Tb-Lp9"/>
+                            <constraint firstItem="A6K-XU-sdg" firstAttribute="leading" secondItem="Srk-kU-C4I" secondAttribute="leading" constant="12" id="EyG-WI-SXH"/>
                             <constraint firstItem="ChZ-Zi-3TR" firstAttribute="top" secondItem="A6K-XU-sdg" secondAttribute="bottom" constant="30" id="MZt-PR-8ec"/>
-                            <constraint firstItem="A6K-XU-sdg" firstAttribute="leading" secondItem="Srk-kU-C4I" secondAttribute="leading" constant="20" id="OCw-jU-s5f"/>
+                            <constraint firstItem="ChZ-Zi-3TR" firstAttribute="centerX" secondItem="Srk-kU-C4I" secondAttribute="centerX" id="Ojb-uZ-UEd"/>
                             <constraint firstItem="U98-ja-NpU" firstAttribute="centerX" secondItem="Srk-kU-C4I" secondAttribute="centerX" id="Scd-kA-hiT"/>
+                            <constraint firstItem="Srk-kU-C4I" firstAttribute="trailing" secondItem="A6K-XU-sdg" secondAttribute="trailing" constant="12" id="ULC-fO-VwA"/>
                             <constraint firstItem="lEJ-iq-A5t" firstAttribute="top" secondItem="Srk-kU-C4I" secondAttribute="top" id="Vxv-w9-4RI"/>
                             <constraint firstItem="A6K-XU-sdg" firstAttribute="top" secondItem="U98-ja-NpU" secondAttribute="bottom" constant="8" id="XrU-2J-6M4"/>
                             <constraint firstItem="Srk-kU-C4I" firstAttribute="bottom" secondItem="ChZ-Zi-3TR" secondAttribute="bottom" constant="38" id="a7r-Mi-8bj"/>
                             <constraint firstItem="lEJ-iq-A5t" firstAttribute="centerX" secondItem="Srk-kU-C4I" secondAttribute="centerX" id="wXw-7Q-6fe"/>
-                            <constraint firstItem="ChZ-Zi-3TR" firstAttribute="leading" secondItem="Srk-kU-C4I" secondAttribute="leading" constant="99" id="y7o-oj-zUm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Srk-kU-C4I"/>
                     </view>
