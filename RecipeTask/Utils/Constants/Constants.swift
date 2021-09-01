@@ -33,7 +33,7 @@ enum AppText: String{
 enum Dimension:Float {
     case COLLECTION_VIEW_WIDTH = 120.0
     case COLLECTION_VIEW_HEIGHT = 60.0
-    case TABLE_VIEW_HEIGHT = 160.0
+    case TABLE_VIEW_HEIGHT = 200.0
 }
 enum Key: String{
     case  SAVED_STRING_ARRAY = "SavedStringArray"
@@ -53,5 +53,11 @@ enum FilterName: String{
     case VEGAN = "vegan"
     case KETO = "keto-friendly"
     
+}
+enum FilterCellIndex: Int{
+    case ALL = 0
+    case LOW_SUGAR = 1
+    case KETO = 2
+    case VEGAN = 3
 }
 

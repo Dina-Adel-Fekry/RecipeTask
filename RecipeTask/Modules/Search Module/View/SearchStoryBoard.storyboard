@@ -27,7 +27,7 @@
                                     <outlet property="delegate" destination="bdn-if-x9l" id="qk5-ka-adb"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="160" estimatedRowHeight="160" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qx3-iu-ydp">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="160" estimatedRowHeight="160" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qx3-iu-ydp">
                                 <rect key="frame" x="12" y="256" width="390" height="620"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -54,9 +54,11 @@
                                     <segue destination="p9X-Og-aOe" kind="embed" id="Chw-xc-Bgb"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Search Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zx-cd-7fU">
-                                <rect key="frame" x="12" y="256" width="390" height="620"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Search Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zx-cd-7fU">
+                                <rect key="frame" x="12" y="460" width="390" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="390" id="9TZ-pn-MM0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -82,6 +84,8 @@
                             <constraint firstAttribute="bottomMargin" secondItem="Qx3-iu-ydp" secondAttribute="bottom" constant="-14" id="K14-uG-xss"/>
                             <constraint firstItem="7Pz-AF-VEE" firstAttribute="trailing" secondItem="Qx3-iu-ydp" secondAttribute="trailing" constant="12" id="KfP-Mc-ivF"/>
                             <constraint firstItem="7Pz-AF-VEE" firstAttribute="trailing" secondItem="2u6-Yb-1PN" secondAttribute="trailing" constant="12" id="N6n-nq-wcb"/>
+                            <constraint firstItem="9Zx-cd-7fU" firstAttribute="centerX" secondItem="7Pz-AF-VEE" secondAttribute="centerX" id="cnX-EC-2L1"/>
+                            <constraint firstItem="9Zx-cd-7fU" firstAttribute="centerY" secondItem="7Pz-AF-VEE" secondAttribute="centerY" id="eat-6J-8i0"/>
                             <constraint firstItem="ZIR-aP-eFn" firstAttribute="top" secondItem="2u6-Yb-1PN" secondAttribute="bottom" id="jN0-ZV-nut"/>
                             <constraint firstItem="t3h-ds-6Uw" firstAttribute="top" secondItem="2u6-Yb-1PN" secondAttribute="bottom" constant="5" id="jPX-e8-oUJ"/>
                             <constraint firstItem="t3h-ds-6Uw" firstAttribute="leading" secondItem="7Pz-AF-VEE" secondAttribute="leading" constant="20" id="toT-Yn-tzp"/>

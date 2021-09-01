@@ -11,6 +11,7 @@ import UIKit
 
 protocol SuggestionInput: class {
     func initSuggestionsArray(suggestion: String)
+    func reloadData()
     func setup()
     func updateView(suggestion: String)
 }
@@ -19,6 +20,6 @@ protocol SuggestionInput: class {
 protocol SuggestionOutput: class {
     func didTapSuggestionItem(suggestion: String)
     func viewDidLoad()
-    func viewSuggestion(suggestion: String)
+    func disSetCurrentSuggestion(suggestion: String)
     
 }

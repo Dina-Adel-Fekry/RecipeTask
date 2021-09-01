@@ -188,6 +188,7 @@ extension SearchViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("searchText \(String(describing: searchBar.text))")
         suggestionsView.isHidden = true
+        searchBar.resignFirstResponder()
         presenter?.didTapSearchBar(searchBarInput:searchBar.text ?? "")
     }
     

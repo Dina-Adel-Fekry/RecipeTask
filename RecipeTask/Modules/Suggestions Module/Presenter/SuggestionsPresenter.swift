@@ -25,9 +25,9 @@ class SuggestionsPresenter {
 extension SuggestionsPresenter : SuggestionOutput{
     
     
-    func viewSuggestion(suggestion: String) {
+    func disSetCurrentSuggestion(suggestion: String) {
         view?.initSuggestionsArray(suggestion:suggestion)
-        
+        view?.reloadData()
     }
     
     

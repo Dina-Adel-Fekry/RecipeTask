@@ -27,6 +27,7 @@
 		692F493E26DE7122005026E6 /* SuggestionsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692F493D26DE7122005026E6 /* SuggestionsStoryboard.storyboard */; };
 		692F494026DE7532005026E6 /* SearchStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692F493F26DE7532005026E6 /* SearchStoryBoard.storyboard */; };
 		692F494226DE75BD005026E6 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692F494126DE75BD005026E6 /* Filter.storyboard */; };
+		6932AEFE26DF93BE00D3C1A9 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6932AEFD26DF93BE00D3C1A9 /* UserDefaultsManager.swift */; };
 		693CBAE426D45B07009EB773 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693CBAE326D45B07009EB773 /* NetworkManager.swift */; };
 		693CBAEC26D46286009EB773 /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693CBAEB26D46286009EB773 /* FilterPresenter.swift */; };
 		693CBAEE26D4629C009EB773 /* FilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693CBAED26D4629C009EB773 /* FilterRouter.swift */; };
@@ -94,6 +95,7 @@
 		692F493D26DE7122005026E6 /* SuggestionsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SuggestionsStoryboard.storyboard; sourceTree = "<group>"; };
 		692F493F26DE7532005026E6 /* SearchStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchStoryBoard.storyboard; sourceTree = "<group>"; };
 		692F494126DE75BD005026E6 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
+		6932AEFD26DF93BE00D3C1A9 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		693CBAE326D45B07009EB773 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		693CBAEB26D46286009EB773 /* FilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
 		693CBAED26D4629C009EB773 /* FilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRouter.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				692F493826DD2861005026E6 /* Extensions */,
 				69A3EEAA26D276A80024D1CF /* Constants */,
 				692F493B26DE531D005026E6 /* DependencyFactory.swift */,
+				6932AEFD26DF93BE00D3C1A9 /* UserDefaultsManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 			files = (
 				693CBAE426D45B07009EB773 /* NetworkManager.swift in Sources */,
 				69A3EEC226D295320024D1CF /* FilterViewController.swift in Sources */,
+				6932AEFE26DF93BE00D3C1A9 /* UserDefaultsManager.swift in Sources */,
 				692F493326DCE0B5005026E6 /* DetailsViewController.swift in Sources */,
 				69CD25F026D52198005EB592 /* SearchApiModel.swift in Sources */,
 				693CBAEE26D4629C009EB773 /* FilterRouter.swift in Sources */,

@@ -36,16 +36,16 @@ extension FilterPresenter : FilterOutput{
     
     func didTapFilterHealth(cellNumber: Int) {
         switch cellNumber {
-        case 0:
+        case FilterCellIndex.ALL.rawValue:
             filterType = FilterName.ALL.rawValue
             
-        case 1:
+        case FilterCellIndex.LOW_SUGAR.rawValue:
             filterType = FilterName.LOW_SUGAR.rawValue
             
-        case 2:
+        case FilterCellIndex.KETO.rawValue:
             filterType = FilterName.KETO.rawValue
             
-        case 3:
+        case FilterCellIndex.VEGAN.rawValue:
             filterType = FilterName.VEGAN.rawValue
         default:
             print(AppText.NOT_AVAILABLE.rawValue)
